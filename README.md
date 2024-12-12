@@ -26,7 +26,7 @@ $ npm run build
 Cette commande génère du contenu statique dans le répertoire `build` et peut être servi en utilisant n'importe quel service d'hébergement de contenu statique.
 
 
-### 2. Déploiement automatique sur Vercel
+## Déploiement automatique sur Vercel
 
 Toute mise à jour sur la branche `main` déclenche automatiquement le déploiement sur [Vercel](https://vercel.com) pour le site accessible à l'adresse : `docs.agence-bb.ch`.  
 
