@@ -1,41 +1,37 @@
-# Website
+# Site Web
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Ce site web est construit en utilisant [Docusaurus](https://docusaurus.io/), un générateur de site web statique moderne.
 
-### Installation
-
-```
-$ yarn
-```
-
-### Local Development
+## Installation
 
 ```
-$ yarn start
+$ npm install
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
+### Développement local
 
 ```
-$ yarn build
+$ npm run start
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-### Deployment
+Cette commande démarre un serveur de développement local et ouvre une fenêtre de navigateur. La plupart des changements sont reflétés en direct sans avoir à redémarrer le serveur.
 
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
+## Build
 
 ```
-$ GIT_USER=<Your GitHub username> yarn deploy
+$ npm run build
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Cette commande génère du contenu statique dans le répertoire `build` et peut être servi en utilisant n'importe quel service d'hébergement de contenu statique.
+
+
+### 2. Déploiement automatique sur Vercel
+
+Toute mise à jour sur la branche `main` déclenche automatiquement le déploiement sur [Vercel](https://vercel.com) pour le site accessible à l'adresse : `docs.agence-bb.ch`.  
+
+````
+$ git add .
+$ git commit -m "message"
+$ git push origin main
+````
