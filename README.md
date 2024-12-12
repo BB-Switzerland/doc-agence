@@ -28,7 +28,7 @@ Cette commande génère du contenu statique dans le répertoire `build` et peut 
 
 ## Déploiement automatique sur Vercel
 
-Toute mise à jour sur la branche `main` déclenche automatiquement le déploiement sur [Vercel](https://vercel.com) pour le site accessible à l'adresse : `docs.agence-bb.ch`.  
+Toute mise à jour sur la branche `main` déclenche automatiquement le déploiement sur [Vercel](https://vercel.com) pour le site accessible à l'adresse : [docs.agence-bb.ch](https://docs.agence-bb.ch/).  
 
 ````
 $ git add .
