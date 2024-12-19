@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Copier les informations de la BDDD
+# Copier les informations de la BDD
 
 Une fois la sauvegarde de la base de données effectuée, il est temps d'extraire les informations de connexion à la base de données depuis le fichier `wp-config.php`. Ces informations vous seront nécessaires pour configurer la base de données lors de la mise en ligne du site sur le serveur de production.
 
