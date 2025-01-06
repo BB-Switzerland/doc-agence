@@ -11,23 +11,29 @@ Ce guide décrit les étapes nécessaires pour migrer votre site WordPress vers 
 Rendez-vous sur le domaine du site pour la mise en ligne (utilisez le nouveau domaine que vous avez créé à l'étape précédente).
 
 1. Une fois connecté, cliquez sur **Web & Domaines** dans la barre de navigation à gauche.  
+
    ![Menu Web & Domain](./img/save_bdd_2.png)
 
 2. Dans le menu qui apparaît, sélectionnez **Site Web**.  
+
    > *(Capture d'écran à ajouter ici)*
 
-3. Recherchez votre site dans la liste et cliquez dessus pour accéder à sa gestion.  
+3. Recherchez votre site dans la liste et cliquez dessus pour accéder à sa gestion. 
+ 
    > *(Capture d'écran à ajouter ici)*
 
 4. Dans la fenêtre qui s'ouvre, cliquez sur le bouton **"<"** pour afficher le menu principal de l'application.  
+
    ![Bases de données](./img/save_bdd_7.png)
 
-5. Dans le menu qui s'affiche, cliquez sur l'option **FTP/SSH**. Ensuite, cliquez sur le bouton **Web FTP** pour ouvrir l'interface FTP.  
+5. Dans le menu qui s'affiche, cliquez sur l'option **FTP/SSH**. Ensuite, cliquez sur le bouton **Web FTP** pour ouvrir l'interface FTP. 
+ 
    ![Web FTP](./img/wp_config_php_1.png)
 
 ### 2. Connexion au serveur FTP
 
 Dans la fenêtre qui s'ouvre, cliquez sur le bouton **Connexion** pour établir la connexion avec le serveur FTP.  
+
 ![Connexion au serveur FTP](./img/wp_config_php_2.png)
 
 ### 3. Naviguer dans les dossiers
