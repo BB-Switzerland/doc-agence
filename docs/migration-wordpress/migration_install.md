@@ -22,7 +22,7 @@ Rendez-vous sur le domaine du site pour la mise en ligne (utilisez le nouveau do
  
    > *(Capture d'écran à ajouter ici)*
 
-4. Dans la fenêtre qui s'ouvre, cliquez sur le bouton **"<"** pour afficher le menu principal de l'application.  
+4. Dans la fenêtre qui s'ouvre, cliquez sur le bouton `<` pour afficher le menu principal de l'application.  
 
    ![Bases de données](./img/save_bdd_7.png)
 
