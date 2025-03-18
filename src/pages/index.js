@@ -59,37 +59,37 @@ export default function Home() {
                 title="Processus Internes"
                 description="Découvrez les processus et méthodologies utilisés au sein de l'agence pour assurer une qualité constante."
                 icon={<BookOpen size={24} />}
-                to="/docs/category/processus-internes"
+                to="/docs/intro"
               />
               <FeatureCard
                 title="Informations RH"
                 description="Guide d'accueil pour les nouveaux collaborateurs, informations pratiques et politiques RH."
                 icon={<Users size={24} />}
-                to="/docs/category/informations-rh"
+                to="/docs/intro"
               />
               <FeatureCard
                 title="Migration de Sites Web"
                 description="Guides et bonnes pratiques pour la migration de sites web pour nos clients."
                 icon={<FileCode size={24} />}
-                to="/docs/category/migration-sites-web"
+                to="/docs/intro"
               />
               <FeatureCard
                 title="Gestion de Contenu"
                 description="Procédures pour l'alimentation et la mise à jour du contenu du site internet de l'agence."
                 icon={<Globe size={24} />}
-                to="/docs/category/gestion-contenu"
+                to="/docs/intro"
               />
               <FeatureCard
                 title="Guide de Tracking"
                 description="Instructions détaillées pour l'implémentation et la gestion du tracking sur les sites web."
                 icon={<BarChart3 size={24} />}
-                to="/docs/category/guide-tracking"
+                to="/docs/intro"
               />
               <FeatureCard
                 title="Ressources Techniques"
                 description="Bibliothèque de ressources techniques, snippets de code et solutions pour les problèmes courants."
                 icon={<BookOpen size={24} />}
-                to="/docs/category/ressources-techniques"
+                to="/docs/intro"
               />
             </div>
           </div>
