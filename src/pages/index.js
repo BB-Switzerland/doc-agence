@@ -60,7 +60,7 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Accueil | ${siteConfig.title}`}
+      title={`Accueil`}
       description="Documentation interne pour les processus, guides et ressources de l'agence"
     >
       <HomepageHeader />
