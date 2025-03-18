@@ -11,32 +11,32 @@ Cette documentation a été créée pour **centraliser** l'ensemble des ressourc
 ## 🚀 Objectifs
 
 - Partager les bonnes pratiques internes
-- Documenter les processus métiers
+- Documenter les process
 - Offrir un support aux nouveaux arrivants
-- Accélérer le travail collaboratif et la montée en compétences
+- Accélérer le travail collaboratif et la montée en compétences de chacun
 - Pouvoir traiter les tâches d'un membre de l'équipe en cas d'absence
 
 ## 🗂️ Contenu de la documentation
 
 Cette documentation est organisée en plusieurs sections :
 
-- 📚 **Processus Internes**  
+- ⚙️ **Processus Internes**  
   Les process d'onboarding client, de développement, de livraison et de suivi.
 
 - 👥 **Informations RH**  
   Tout ce qu'il faut savoir sur la vie d'agence, l'intégration et les outils RH.
 
-- 🌐 **Migration de Sites Web**  
+- 🚀 **Migration de Sites Web**  
   Les bonnes pratiques pour réussir la migration technique et SEO des sites clients.
 
-- ✍️ **Gestion de Contenu**  
+- 🌐 **Gestion de Contenu**  
   Les consignes et procédures pour la mise à jour du contenu des sites.
 
-- 📈 **Guide de Tracking**  
+- 🎯 **Guide de Tracking**  
   Les instructions pour le suivi d'audience et la collecte de données.
 
-- ⚙️ **Ressources Techniques**  
-  Snippets, outils, et astuces techniques pour le développement.
+- 📢 **Création de campagne Méta**  
+  Les étapes pour la création et le suivi des campagnes publicitaires sur Meta.
 
 
 import Link from '@docusaurus/Link';
