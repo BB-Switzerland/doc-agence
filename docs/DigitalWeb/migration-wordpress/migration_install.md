@@ -85,7 +85,9 @@ Ouvrez votre navigateur et entrez l'adresse du nouveau site web en ajoutant **/i
 
 
 
-:::info**Conclusion**
+:::info
+
+**Conclusion**
 
 La migration de votre site WordPress est maintenant terminée. Si vous rencontrez des problèmes ou si vous avez des questions supplémentaires, n'hésitez pas à consulter la documentation de Duplicator ou à contacter votre administrateur système.
 

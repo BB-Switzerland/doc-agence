@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Copier les informations de la BDD
 
-Une fois la sauvegarde de la base de données effectuée, il est temps d'extraire les informations de connexion à la base de données depuis le fichier `wp-config.php`. Ces informations vous seront nécessaires pour configurer la base de données lors de la mihration du site sur le serveur de production.
+Une fois la sauvegarde de la base de données effectuée, il est temps d'extraire les informations de connexion à la base de données depuis le fichier `wp-config.php`. Ces informations vous seront nécessaires pour configurer la base de données lors de la migration du site sur le serveur de production.
 
 ### 1. Accéder au menu FTP/SSH  
 Depuis la page où vous avez lancé le téléchargement de la sauvegarde de la base de données, regardez à gauche dans le menu et cliquez sur l'option **FTP/SSH**. Ensuite, cliquez sur le bouton **Web FTP** pour ouvrir l'interface FTP.  
