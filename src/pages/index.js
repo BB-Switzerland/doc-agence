@@ -1,10 +1,18 @@
-import clsx from "clsx"
-import Link from "@docusaurus/Link"
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
-import Layout from "@theme/Layout"
-import Heading from "@theme/Heading"
-import styles from "./index.module.css"
-import { BookOpen, Users, ArrowRight, Globe, BarChart3, FileCode } from "lucide-react"
+import clsx from "clsx";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Layout from "@theme/Layout";
+import Heading from "@theme/Heading";
+import styles from "./index.module.css";
+import {
+  BookOpen,
+  Users,
+  ArrowRight,
+  Globe,
+  Megaphone,
+  BarChart3,
+  FileCode,
+} from "lucide-react";
 
 // Custom feature component for the homepage
 function FeatureCard({ title, description, icon, to }) {
@@ -21,30 +29,35 @@ function FeatureCard({ title, description, icon, to }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext()
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx("hero", styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           Documentation Interne
         </Heading>
-        <p className="hero__subtitle">Ressources, guides et processus pour l'équipe de l'agence</p>
+        <p className="hero__subtitle">
+          Ressources, guides et processus pour l'équipe de l'agence BB.
+        </p>
         <div className={styles.buttons}>
-          <Link className="button button--primary button--lg btn-intro" to="/docs/intro">
+          <Link
+            className="button button--primary button--lg btn-intro"
+            to="/docs"
+          >
             Commencer ici
           </Link>
         </div>
       </div>
     </header>
-  )
+  );
 }
 
 export default function Home() {
-  const { siteConfig } = useDocusaurusContext()
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Accueil | ${siteConfig.title}`}
@@ -59,43 +72,42 @@ export default function Home() {
                 title="Processus Internes"
                 description="Découvrez les processus et méthodologies utilisés au sein de l'agence pour assurer une qualité constante."
                 icon={<BookOpen size={24} />}
-                to="/docs/intro"
+                to="/docs/category/onboarding--rapport"
               />
               <FeatureCard
                 title="Informations RH"
                 description="Guide d'accueil pour les nouveaux collaborateurs, informations pratiques et politiques RH."
                 icon={<Users size={24} />}
-                to="/docs/intro"
-              />
-              <FeatureCard
-                title="Migration de Sites Web"
-                description="Guides et bonnes pratiques pour la migration de sites web pour nos clients."
-                icon={<FileCode size={24} />}
-                to="/docs/intro"
+                to="/docs/category/starter-pack"
               />
               <FeatureCard
                 title="Gestion de Contenu"
                 description="Procédures pour l'alimentation et la mise à jour du contenu du site internet de l'agence."
                 icon={<Globe size={24} />}
-                to="/docs/intro"
+                to="/docs/category/-sites-web-bbs"
+              />
+              <FeatureCard
+                title="Migration de Sites Web"
+                description="Guides et bonnes pratiques pour la migration de sites web pour nos clients."
+                icon={<FileCode size={24} />}
+                to="/docs/category/-migration-site-wordpress"
               />
               <FeatureCard
                 title="Guide de Tracking"
                 description="Instructions détaillées pour l'implémentation et la gestion du tracking sur les sites web."
                 icon={<BarChart3 size={24} />}
-                to="/docs/intro"
+                to="/docs/category/-tracking"
               />
               <FeatureCard
-                title="Ressources Techniques"
-                description="Bibliothèque de ressources techniques, snippets de code et solutions pour les problèmes courants."
-                icon={<BookOpen size={24} />}
-                to="/docs/intro"
+                title="Campagnes Meta"
+                description="Guide pour la création et la gestion des campagnes Meta pour les clients de l'agence."
+                icon={<Megaphone size={24} />}
+                to="/docs/category/-campagnes-meta"
               />
             </div>
           </div>
         </section>
       </main>
     </Layout>
-  )
+  );
 }
-
