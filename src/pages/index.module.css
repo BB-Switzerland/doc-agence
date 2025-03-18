@@ -3,7 +3,7 @@
  * and scoped locally.
  */
 
- .heroBanner {
+.heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
@@ -39,8 +39,15 @@
   height: 48px;
   border-radius: 50%;
   background-color: var(--ifm-color-primary-lightest);
-  color: var(--bb-main-color);
   margin-bottom: 1rem;
+}
+
+html[data-theme="dark"] .featureIcon {
+  color: var(--bb-main-color);
+}
+
+html[data-theme="light"] .featureIcon {
+  color: white;
 }
 
 .cardFooter {
@@ -53,3 +60,16 @@
   vertical-align: middle;
 }
 
+.heroBanner h1,
+.heroBanner p {
+  color: white;
+}
+
+html[data-theme="dark"] .heroBanner h1,
+html[data-theme="dark"] .heroBanner p {
+  color: var(--bb-main-color);
+}
+
+.button.button--secondary {
+  color: white;
+}

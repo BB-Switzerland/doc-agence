@@ -6,26 +6,75 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #e11e84;
+  --ifm-color-primary-dark: #e11e84;
+  --ifm-color-primary-darker: #e11e84;
+  --ifm-color-primary-darkest: #e11e84;
+  --ifm-color-primary-light: #e11e84;
+  --ifm-color-primary-lighter: #e11e84;
+  --ifm-color-primary-lightest: #e11e84;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --bb-button-bg: white;
+  --bb-button-color: #2b2c2d;
+  --bb-main-color: #2b2c2d;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #d2dc67;
-  --ifm-color-primary-dark: #d2dc67;
-  --ifm-color-primary-darker: #d2dc67;
-  --ifm-color-primary-darkest: #d2dc67;
-  --ifm-color-primary-light: #d2dc67;
-  --ifm-color-primary-lighter: #d2dc67;
-  --ifm-color-primary-lightest: #d2dc67;
+  --ifm-color-primary: #d2dc65;
+  --ifm-color-primary-dark: #d2dc65;
+  --ifm-color-primary-darker: #d2dc65;
+  --ifm-color-primary-darkest: #d2dc65;
+  --ifm-color-primary-light: #d2dc65;
+  --ifm-color-primary-lighter: #d2dc65;
+  --ifm-color-primary-lightest: #d2dc65;
+  --ifm-color-secondary: #2b2c2d;
+  --ifm-color-secondary-dark: #2b2c2d;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-  --bb-main-color: #1f2022;
+  --bb-button-bg: #2b2c2d;
+  --bb-button-color: #d2dc65;
+  --bb-main-color: #2b2c2d;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, blockquote, code, pre, table, th, td {
+  font-family: 'Roboto Flex', sans-serif !important;
+}
+
+.my-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem; /* équivalent à gap-4 */
+}
+
+@media (min-width: 768px) {
+  .my-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .my-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.h-full, .h-full .card{
+  height: 100%;
+}
+
+.btn-intro{
+  background-color: white;
+  color: var(--ifm-color-primary);
+}
+
+html[data-theme='dark'] .btn-intro{
+  background-color: #2b2c2d;
+  color: var(--ifm-color-primary);
+}
+
+.button p{
+  margin: 0;
 }

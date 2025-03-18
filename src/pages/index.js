@@ -9,13 +9,13 @@ import { BookOpen, Users, ArrowRight, Globe, BarChart3, FileCode } from "lucide-
 // Custom feature component for the homepage
 function FeatureCard({ title, description, icon, to }) {
   return (
-    <div className="col col--4 margin-bottom--lg">
+    <div className="h-full">
       <div className="card padding--lg height-full">
         <div className={clsx(styles.featureIcon, "icon-feature")}>{icon}</div>
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
         <div className={styles.cardFooter}>
-          <Link className="button button--primary button--sm" to={to}>
+          <Link className="button button--primary button--md" to={to}>
             Accéder <ArrowRight className={styles.buttonIcon} size={16} />
           </Link>
         </div>
@@ -34,7 +34,7 @@ function HomepageHeader() {
         </Heading>
         <p className="hero__subtitle">Ressources, guides et processus pour l'équipe de l'agence</p>
         <div className={styles.buttons}>
-          <Link className="button button--primary button--lg" to="/docs/intro">
+          <Link className="button button--primary button--lg btn-intro" to="/docs/intro">
             Commencer ici
           </Link>
         </div>
@@ -54,7 +54,7 @@ export default function Home() {
       <main>
         <section className={styles.features}>
           <div className="container">
-            <div className="row">
+            <div className="my-grid">
               <FeatureCard
                 title="Processus Internes"
                 description="Découvrez les processus et méthodologies utilisés au sein de l'agence pour assurer une qualité constante."
