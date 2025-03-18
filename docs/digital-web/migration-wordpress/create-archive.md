@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Création du paquet pour la migration
+# Création du paquet de migration
 
 L'outil **Duplicator** est un plugin WordPress permettant de créer une copie complète de votre site, incluant la base de données et tous les fichiers nécessaires à sa mise en ligne sur un nouveau serveur. Cette étape vous guidera dans l'installation du plugin Duplicator et la création du paquet de migration.
 

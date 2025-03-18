@@ -38,13 +38,6 @@ Cette documentation est organisée en plusieurs sections :
 - ⚙️ **Ressources Techniques**  
   Snippets, outils, et astuces techniques pour le développement.
 
----
-
-## 🤝 Besoin d'aide ?
-
-Contacte l'équipe documentation sur **Slack** ou ouvre une **issue GitHub** si tu rencontres un problème ou que tu trouves une coquille.
-
----
 
 import Link from '@docusaurus/Link';
 

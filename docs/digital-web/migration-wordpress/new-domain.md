@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Création d'un nouvel hébergement sur Infomaniak
+# Créer un nouveau site
 
 Cette documentation explique les étapes à suivre pour commander un nouvel hébergement sur Infomaniak afin de mettre en production un site web que vous souhaitez migrer.
 
