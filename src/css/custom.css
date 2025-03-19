@@ -126,3 +126,7 @@ html[data-theme='dark'] .btn-intro{
 .footer{
   display: none;
 }
+
+footer.DocSearch-Footer {
+  display: none;
+}
