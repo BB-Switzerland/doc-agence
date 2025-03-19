@@ -179,7 +179,7 @@ const config = {
         // Public API key: it is safe to commit it
         apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
 
-        indexName: "crawler_Doc Agence BB",
+        indexName: "crawler_Agence BB Doc Crawler",
 
         // Optional: see doc section below
         contextualSearch: true,
