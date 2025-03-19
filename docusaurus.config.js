@@ -119,11 +119,6 @@ const config = {
             label: 'Onboarding',
             position: 'left',
           },
-          {
-            to: '/blog', // si tu veux garder le blog
-            label: 'Blog',
-            position: 'right',
-          },
         ],
       },      
       colorMode: {
