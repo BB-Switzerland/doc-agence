@@ -4,71 +4,90 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from "prism-react-renderer";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Agence BB Doc',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/BBS.png',
+  title: "Agence BB Doc",
+  tagline: "Dinosaurs are cool",
+  favicon: "img/BBS.png",
 
   // Set the production url of your site here
-  url: 'https://docs.agence-bb.ch/',
+  url: "https://docs.agence-bb.ch/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: "facebook", // Usually your GitHub org/user name.
+  projectName: "docusaurus", // Usually your repo name.
 
   noIndex: true, // Defaults to `false`
 
-  onBrokenLinks: 'ignore',
-  onBrokenMarkdownLinks: 'ignore',
+  onBrokenLinks: "ignore",
+  onBrokenMarkdownLinks: "ignore",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'fr',
-    locales: ['fr'],
+    defaultLocale: "fr",
+    locales: ["fr"],
   },
 
   presets: [
     [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
-        docs: {
-          sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+      "classic",
+      {
+        docs: false, // <------ désactive la doc "classique"
         blog: {
           showReadingTime: true,
           feedOptions: {
-            type: ['rss', 'atom'],
+            type: ["rss", "atom"],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+          editUrl: "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          onInlineTags: "warn",
+          onInlineAuthors: "warn",
+          onUntruncatedBlogPosts: "warn",
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
-      }),
+      },
+    ],
+  ],  
+
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "rh",
+        path: "docs-rh", // Dossier de ta doc RH
+        routeBasePath: "rh", // URL => /rh
+        sidebarPath: require.resolve("./sidebarsRh.js"),
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "digital",
+        path: "docs-digital", // Dossier de ta doc Digital/Web
+        routeBasePath: "digital", // URL => /digital
+        sidebarPath: require.resolve("./sidebarsDigital.js"),
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "onboarding",
+        path: "docs-onboarding", // Dossier de ta doc Onboarding
+        routeBasePath: "onboarding", // URL => /onboarding
+        sidebarPath: require.resolve("./sidebarsOnboarding.js"),
+      },
     ],
   ],
 
@@ -76,62 +95,71 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: "img/docusaurus-social-card.jpg",
       navbar: {
         title: 'Agence BB Doc',
         logo: {
-          alt: 'Agence BB Doc Logo',
+          alt: 'Agence BB Logo',
           src: 'img/BBS.png',
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'docSidebar',
+            to: '/rh', // page d'accueil RH
+            label: 'RH',
             position: 'left',
-            label: 'Docs',
           },
-          // {
-          //   href: 'https://github.com/facebook/docusaurus',
-          //   label: 'GitHub',
-          //   position: 'right',
-          // },
+          {
+            to: '/digital', // page d'accueil Digital/Web
+            label: 'Digital & Web',
+            position: 'left',
+          },
+          {
+            to: '/onboarding', // page d'accueil Onboarding
+            label: 'Onboarding',
+            position: 'left',
+          },
+          {
+            to: '/blog', // si tu veux garder le blog
+            label: 'Blog',
+            position: 'right',
+          },
         ],
-      },
+      },      
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: "dark",
         disableSwitch: false,
         respectPrefersColorScheme: false,
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Community',
+            title: "Community",
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: "Stack Overflow",
+                href: "https://stackoverflow.com/questions/tagged/docusaurus",
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: "Discord",
+                href: "https://discordapp.com/invite/docusaurus",
               },
               {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
+                label: "X",
+                href: "https://x.com/docusaurus",
               },
             ],
           },
           {
-            title: 'More',
+            title: "More",
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: "Blog",
+                to: "/blog",
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: "GitHub",
+                href: "https://github.com/facebook/docusaurus",
               },
             ],
           },
@@ -145,31 +173,31 @@ const config = {
 
       algolia: {
         // The application ID provided by Algolia
-        appId: 'G21L4N8LJY',
-  
+        appId: "G21L4N8LJY",
+
         // Public API key: it is safe to commit it
-        apiKey: '9ce4812b1cc0579643d2905b81e8c628',
-  
-        indexName: 'crawler_Doc Agence BB',
-  
+        apiKey: "9ce4812b1cc0579643d2905b81e8c628",
+
+        indexName: "crawler_Doc Agence BB",
+
         // Optional: see doc section below
         contextualSearch: true,
-  
+
         // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
         replaceSearchResultPathname: {
-          from: '/docs/', // or as RegExp: /\/docs\//
-          to: '/docs/',
+          from: "/docs/", // or as RegExp: /\/docs\//
+          to: "/docs/",
         },
-  
+
         // Optional: Algolia search parameters
         searchParameters: {},
-  
+
         // Optional: path for search page that enabled by default (`false` to disable it)
-        searchPagePath: 'search',
-  
+        searchPagePath: "search",
+
         // Optional: whether the insights feature is enabled or not on Docsearch (`false` by default)
         insights: false,
-  
+
         //... other Algolia params
       },
     }),
