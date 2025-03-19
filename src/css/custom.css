@@ -130,3 +130,11 @@ html[data-theme='dark'] .btn-intro{
 footer.DocSearch-Footer {
   display: none;
 }
+
+.hidden {
+  display: none !important;
+}
+
+.hero__subtitle{
+  margin: 0 !important;
+}

@@ -43,14 +43,14 @@ function HomepageHeader() {
         <p className="hero__subtitle">
           Ressources, guides et processus pour l'équipe de l'agence BB.
         </p>
-        <div className={styles.buttons}>
+        {/* <div className={styles.buttons}>
           <Link
-            className="button button--primary button--lg btn-intro"
+            className="button button--primary button--lg btn-intro hidden"
             to="/docs"
           >
             Commencer ici
           </Link>
-        </div>
+        </div> */}
       </div>
     </header>
   );
