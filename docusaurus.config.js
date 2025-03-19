@@ -26,7 +26,7 @@ const config = {
   organizationName: "facebook", // Usually your GitHub org/user name.
   projectName: "docusaurus", // Usually your repo name.
 
-  noIndex: true, // Defaults to `false`
+  noIndex: false, // Defaults to `false`
 
   onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "ignore",
