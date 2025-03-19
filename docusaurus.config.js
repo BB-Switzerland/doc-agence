@@ -5,6 +5,7 @@
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
 import { themes as prismThemes } from "prism-react-renderer";
+import 'dotenv/config'; // Ou require('dotenv').config(); si CommonJS
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -173,10 +174,10 @@ const config = {
 
       algolia: {
         // The application ID provided by Algolia
-        appId: "G21L4N8LJY",
+        appId: process.env.ALGOLIA_APP_ID,
 
         // Public API key: it is safe to commit it
-        apiKey: "9ce4812b1cc0579643d2905b81e8c628",
+        apiKey: process.env.ALGOLIA_SEARCH_API_KEY,
 
         indexName: "crawler_Doc Agence BB",
 
