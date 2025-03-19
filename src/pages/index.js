@@ -72,37 +72,37 @@ export default function Home() {
                 title="Processus Internes"
                 description="Découvrez les processus et méthodologies utilisés au sein de l'agence pour assurer une qualité constante."
                 icon={<BookOpen size={24} />}
-                to="/docs/category/onboarding--rapport"
+                to="/onboarding"
               />
               <FeatureCard
                 title="Informations RH"
                 description="Guide d'accueil pour les nouveaux collaborateurs, informations pratiques et politiques RH."
                 icon={<Users size={24} />}
-                to="/docs/category/starter-pack"
+                to="/rh"
               />
               <FeatureCard
                 title="Gestion de Contenu"
                 description="Procédures pour l'alimentation et la mise à jour du contenu du site internet de l'agence."
                 icon={<Globe size={24} />}
-                to="/docs/category/-sites-web-bbs"
+                to="/digital/category/-sites-web-bbs"
               />
               <FeatureCard
                 title="Migration de Sites Web"
                 description="Guides et bonnes pratiques pour la migration de sites web pour nos clients."
                 icon={<FileCode size={24} />}
-                to="/docs/category/-migration-site-wordpress"
+                to="/digital/category/-migration-site-wordpress"
               />
               <FeatureCard
                 title="Guide de Tracking"
                 description="Instructions détaillées pour l'implémentation et la gestion du tracking sur les sites web."
                 icon={<BarChart3 size={24} />}
-                to="/docs/category/-tracking"
+                to="/digital/category/-tracking"
               />
               <FeatureCard
                 title="Campagnes Meta"
                 description="Guide pour la création et la gestion des campagnes Meta pour les clients de l'agence."
                 icon={<Megaphone size={24} />}
-                to="/docs/category/-campagnes-meta"
+                to="/digital/category/-campagnes-meta"
               />
             </div>
           </div>
