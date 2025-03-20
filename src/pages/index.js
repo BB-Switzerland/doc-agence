@@ -13,6 +13,7 @@ import {
   BarChart3,
   FileCode,
 } from "lucide-react";
+import SearchBar from "@theme/SearchBar";
 
 // Custom feature component for the homepage
 function FeatureCard({ title, description, icon, to }) {
@@ -51,6 +52,9 @@ function HomepageHeader() {
             Commencer ici
           </Link>
         </div> */}
+        <div className="searchbar-header">
+          <SearchBar />
+        </div>
       </div>
     </header>
   );

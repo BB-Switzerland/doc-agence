@@ -138,3 +138,16 @@ footer.DocSearch-Footer {
 .hero__subtitle{
   margin: 0 !important;
 }
+
+.searchbar-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.searchbar-header button.DocSearch.DocSearch-Button {
+  width: 100%;
+  max-width: 500px;
+}
