@@ -14,11 +14,14 @@ import {
   FileCode,
 } from "lucide-react";
 import SearchBar from "@theme/SearchBar";
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // si pas déjà importé ailleurs
 
 // Custom feature component for the homepage
 function FeatureCard({ title, description, icon, to }) {
   return (
-    <div className="h-full">
+    <div className="h-full" data-aos="fade-up" data-aos-duration="800">
       <div className="card padding--lg height-full">
         <div className={clsx(styles.featureIcon, "icon-feature")}>{icon}</div>
         <Heading as="h3">{title}</Heading>
@@ -37,7 +40,7 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx("hero", styles.heroBanner)}>
-      <div className="container">
+      <div className="container"  data-aos="fade-in" data-aos-duration="800">
         <Heading as="h1" className="hero__title">
           Documentation Interne
         </Heading>
@@ -62,6 +65,9 @@ function HomepageHeader() {
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <Layout
       title={`Accueil`}
