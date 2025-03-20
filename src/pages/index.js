@@ -55,9 +55,6 @@ function HomepageHeader() {
             Commencer ici
           </Link>
         </div> */}
-        <div className="searchbar-header">
-          <SearchBar />
-        </div>
       </div>
     </header>
   );
