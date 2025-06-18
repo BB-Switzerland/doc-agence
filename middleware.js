@@ -1,5 +1,5 @@
 export const config = {
-    matcher: '/:path*', // Toutes les routes
+    matcher: '/:path*',
 };
 
 export default function middleware(request) {
@@ -10,7 +10,8 @@ export default function middleware(request) {
         const [user, pwd] = atob(authValue).split(':');
 
         if (user === 'admin' && pwd === 'BBteam25') {
-            return new Response(null, { status: 200 });
+            // ✅ Laisse passer la requête vers Docusaurus
+            return fetch(request);
         }
     }
 
