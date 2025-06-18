@@ -6,6 +6,6 @@ description: Séance mensuelle BBS
 
 # Séance mensuelle
 
-La séance mensuelle est terminée ? Pas de souci, les comptes-rendus sont là :  
+Vous avez manqué la dernière séance mensuelle ? Pas de souci, les comptes-rendus sont là :  
 
 [📁 Accéder au dossier](smb://10.1.1.230/BB_Team/Séances_Globales)
