@@ -2,6 +2,10 @@ export const config = {
     matcher: '/:path*',
 };
 
+// Ces variables seront injectées au moment du build par Vercel
+const USER = process.env.AUTH_USER;
+const PASS = process.env.AUTH_PASS;
+
 export default function middleware(request) {
     const basicAuth = request.headers.get('authorization');
 
@@ -9,8 +13,7 @@ export default function middleware(request) {
         const authValue = basicAuth.split(' ')[1];
         const [user, pwd] = atob(authValue).split(':');
 
-        if (user === 'admin' && pwd === 'BBteam25') {
-            // ✅ Laisse passer la requête vers Docusaurus
+        if (user === USER && pwd === PASS) {
             return fetch(request);
         }
     }
