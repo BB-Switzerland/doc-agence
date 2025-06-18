@@ -1,25 +1,23 @@
-import { NextResponse } from 'next/server';
-
 export const config = {
-    matcher: '/:path*', // protège toutes les routes
+    matcher: '/:path*', // Toutes les routes
 };
 
 export default function middleware(request) {
     const basicAuth = request.headers.get('authorization');
 
     if (basicAuth) {
-        const value = basicAuth.split(' ')[1];
-        const [user, pass] = atob(value).split(':');
+        const authValue = basicAuth.split(' ')[1];
+        const [user, pwd] = atob(authValue).split(':');
 
-        if (user === 'admin' && pass === 'BBteam25') {
-            return NextResponse.next();
+        if (user === 'admin' && pwd === 'BBteam25') {
+            return new Response(null, { status: 200 });
         }
     }
 
-    return new NextResponse('Authentication required', {
+    return new Response('Authentication required!', {
         status: 401,
         headers: {
-            'WWW-Authenticate': 'Basic realm="Secure Area"',
+            'WWW-Authenticate': 'Basic realm="Protected"',
         },
     });
 }
