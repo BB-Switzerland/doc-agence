@@ -42,7 +42,7 @@ Cette documentation est organisée en plusieurs sections :
 import Link from '@docusaurus/Link';
 
 <div style={{ marginTop: '2rem' }}>
-  <Link className="button button--primary button--lg" to="/docs/category/rh">
+  <Link className="button button--primary button--lg" to="/rh/directives">
     👉 Commencer la lecture
   </Link>
 </div>
