@@ -1,27 +1,17 @@
 export const config = {
-    matcher: '/:path*',
+  matcher: "/:path*",
 };
 
-// Ces variables seront injectées au moment du build par Vercel
-const USER = process.env.AUTH_USER;
-const PASS = process.env.AUTH_PASS;
-
 export default function middleware(request) {
-    const basicAuth = request.headers.get('authorization');
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  console.log("Visitor IP:", ip);
+  const ALLOWED_IP = "123.45.67.89";
 
-    if (basicAuth) {
-        const authValue = basicAuth.split(' ')[1];
-        const [user, pwd] = atob(authValue).split(':');
+  if (ip === ALLOWED_IP) {
+    console.log("Access granted ✅");
+    return fetch(request);
+  }
 
-        if (user === USER && pwd === PASS) {
-            return fetch(request);
-        }
-    }
-
-    return new Response('Authentication required!', {
-        status: 401,
-        headers: {
-            'WWW-Authenticate': 'Basic realm="Protected"',
-        },
-    });
+  console.log("Access denied 🚫 for", ip);
+  return new Response("Access denied", { status: 403 });
 }
