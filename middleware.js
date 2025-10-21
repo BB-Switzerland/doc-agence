@@ -5,7 +5,7 @@ export const config = {
 export default function middleware(request) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   console.log("Visitor IP:", ip);
-  const ALLOWED_IP = "185.109.164.10";
+  const ALLOWED_IP = process.env.BB_IP_WHITELIST;
 
   if (ip === ALLOWED_IP) {
     console.log("Access granted ✅");
