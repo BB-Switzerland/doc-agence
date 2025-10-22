@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# 1Password
+# 🔐 1Password
 
 1Password est l'outil de gestion de mots de passe de l'agence. C'est là que tu trouveras tous les mots de passe pour les différents outils que nous utilisons.
 

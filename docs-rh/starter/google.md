@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Google
+# 📧 Adresse e-mail Google
 
 A l'agence on utilise beaucoup les outils Google pour les emails, le calendrier, les documents, les google sheets.
 

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Monday
+# 📋 Monday
 
 Monday est l'outil de gestion de projet de l'agence. C'est là que tu trouveras toutes les informations sur les projets en cours, les tâches à réaliser, les deadlines, etc.
 

@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Tipee
+# 👤 Tipee
 
 Tipee est la plateforme RH de l'agence où tu peux voir tes informations personnelles, tes congés, tes notes de frais, etc.
 

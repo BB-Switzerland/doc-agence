@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Slack
+# 💬 Slack
 
 Slack est l'outil de communication principal de l'agence. C'est là que tu trouveras toutes les informations importantes, les discussions avec tes collègues, les notifications, etc.
 
