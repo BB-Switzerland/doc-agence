@@ -21,6 +21,10 @@ smb://10.1.1.231
 ```
 
 :::info
+Si vous avez des problèmes pour accéder aux serveurs, n'hésitez pas à contacter Amancio pour le serveur général ou Charles pour le serveur photos/vidéos.
+:::
+
+:::warning
 Pour accéder aux serveurs, vous devez être connecté au réseau de l'agence ou utiliser le VPN.
 :::
 
