@@ -69,19 +69,19 @@ if (typeof window !== "undefined" && !isPrivatePath(window.location.pathname)) {
   // ------------------------------
   // Imports dynamiques (fonctionnent en script classique)
   // ------------------------------
-  const { initializeApp } = await import(
-    "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js"
-  );
+  // Charge dynamiquement les SDKs Firebase à l'exécution dans le navigateur.
+  // On utilise `new Function('u', 'return import(u)')(url)` pour éviter que
+  // Webpack (exécuté lors du build) tente de résoudre les URLs `https:`.
+  const dynamicImport = (url) => new Function('u', 'return import(u)')(url);
+  const { initializeApp } = await dynamicImport('https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js');
   const {
     getAuth,
     onAuthStateChanged,
     signInWithPopup,
     GoogleAuthProvider,
     signOut,
-  } = await import(
-    "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js"
-  );
-  log("Firebase SDKs loaded");
+  } = await dynamicImport('https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js');
+  log('Firebase SDKs loaded (dynamic)');
 
   // ------------------------------
   // Config Firebase (la tienne)

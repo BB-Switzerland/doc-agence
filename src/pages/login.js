@@ -23,8 +23,11 @@ export default function LoginPage() {
         } catch (_) {}
 
         // Import dynamique des SDK Firebase côté client
-        const { initializeApp } = await import(
-          "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js"
+        // Utilise la même technique que dans static/auth.js pour éviter que
+        // Webpack (au build sur Vercel) tente de résoudre les URLs https:.
+        const dynamicImport = (url) => new Function('u', 'return import(u)')(url);
+        const { initializeApp } = await dynamicImport(
+          'https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js'
         );
         const {
           getAuth,
@@ -35,8 +38,8 @@ export default function LoginPage() {
           getRedirectResult,
           browserLocalPersistence,
           setPersistence,
-        } = await import(
-          "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js"
+        } = await dynamicImport(
+          'https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js'
         );
 
         const firebaseConfig = {
