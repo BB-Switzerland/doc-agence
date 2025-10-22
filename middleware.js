@@ -22,30 +22,22 @@ function parseCookies(cookieHeader) {
 export default async function middleware(request) {
   const { pathname, search } = new URL(request.url);
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  // Filtrage IP global (si défini en variable d'environnement)
+  try {
+    const ALLOWED_IP = process.env.BB_IP_WHITELIST;
+    console.log('[mw] visitor ip', ip, 'allowed_ip_env', ALLOWED_IP);
+    if (ALLOWED_IP && ip !== ALLOWED_IP) {
+      console.log('[mw] Access denied 🚫 for', ip);
+      return new Response('Access denied', { status: 403 });
+    }
+  } catch (e) {
+    console.warn('[mw] ip filtering check failed', e);
+  }
   const cookies = parseCookies(request.headers.get("cookie"));
   const isPrivate = isPrivatePath(pathname);
   const isLogin = pathname === "/login";
 
   console.log("[mw] req", { pathname, search, ip, isPrivate, isLogin, bb_auth: cookies.bb_auth, bb_email: cookies.bb_email });
-
-  // --- Filtrage IP (whitelist) ---
-  // Format attendu : BB_IP_WHITELIST="1.2.3.4,5.6.7.8"
-  try {
-    const raw = process.env.BB_IP_WHITELIST || "";
-    const allowedIps = raw.split(",").map((s) => s.trim()).filter(Boolean);
-    if (allowedIps.length) {
-      if (!ip) {
-        console.log("[mw] no x-forwarded-for header present, cannot match IP whitelist");
-      } else if (allowedIps.includes(ip)) {
-        console.log("[mw] access granted by IP whitelist ✅", ip);
-        return fetch(request);
-      } else {
-        console.log("[mw] ip not in whitelist:", ip, "allowed:", allowedIps);
-      }
-    }
-  } catch (e) {
-    console.warn("[mw] ip whitelist check failed", e);
-  }
 
   // Laisse passer la page de login et les assets sans restriction
   if (isLogin || pathname.startsWith("/assets") || pathname.startsWith("/img") || pathname.startsWith("/auth.js") || pathname.startsWith("/static")) {
