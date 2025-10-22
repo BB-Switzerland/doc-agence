@@ -12,7 +12,7 @@ Tu as reçu un mail sur ton adresse e-mail personnelle de l'agence pour te conne
 
 Tu peux maintenant te connecter à ton compte Google.
 
-:::warning
+:::danger
 
 Il faut impérativement activer l'authentification à deux facteurs pour des raisons de sécurité. Si tu ne l'as pas fait, tu ne pourras pas te connecter à ton compte Google dans 1 semaine.
 
