@@ -92,6 +92,11 @@ const config = {
     ],
   ],
 
+  // Charge des scripts globaux côté client (servis depuis /static)
+  scripts: [
+    { src: "/auth.js", type: "module" },
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
