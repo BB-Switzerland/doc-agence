@@ -5,7 +5,7 @@
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
 import { themes as prismThemes } from "prism-react-renderer";
-import 'dotenv/config'; // Ou require('dotenv').config(); si CommonJS
+import "dotenv/config"; // Ou require('dotenv').config(); si CommonJS
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -50,7 +50,8 @@ const config = {
             type: ["rss", "atom"],
             xslt: true,
           },
-          editUrl: "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl:
+            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
@@ -60,7 +61,7 @@ const config = {
         },
       },
     ],
-  ],  
+  ],
 
   plugins: [
     [
@@ -93,9 +94,7 @@ const config = {
   ],
 
   // Charge des scripts globaux côté client (servis depuis /static)
-  scripts: [
-    { src: "/auth.js", type: "module" },
-  ],
+  scripts: [{ src: "/auth.js", type: "module" }],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -103,29 +102,33 @@ const config = {
       // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: 'Agence BB Doc',
+        title: "Agence BB Doc",
         logo: {
-          alt: 'Agence BB Logo',
-          src: 'img/BBS.png',
+          alt: "Agence BB Logo",
+          src: "img/BBS.png",
         },
         items: [
           {
-            to: '/rh', // page d'accueil RH
-            label: 'RH',
-            position: 'left',
+            to: "/rh", // page d'accueil RH
+            label: "RH",
+            position: "left",
           },
           {
-            to: '/digital', // page d'accueil Digital/Web
-            label: 'Digital & Web',
-            position: 'left',
+            to: "/digital", // page d'accueil Digital/Web
+            label: "Digital & Web",
+            position: "left",
           },
           {
-            to: '/onboarding', // page d'accueil Onboarding
-            label: 'Onboarding',
-            position: 'left',
+            to: "/onboarding", // page d'accueil Onboarding
+            label: "Onboarding",
+            position: "left",
+          },
+          {
+            type: "custom-login", // Type personnalisé pour le bouton de connexion
+            position: "right",
           },
         ],
-      },      
+      },
       colorMode: {
         defaultMode: "dark",
         disableSwitch: false,
