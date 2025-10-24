@@ -10,13 +10,18 @@ Cela permettra de déclencher les évènements personnalisés de Google Analytic
 
 ## Changer l'URL du conteneur serveur
 
+### Configuration des paramètres
+
 Pour changer l'URL du conteneur serveur, rendez-vous dans les paramètres du conteneur.
 
 - ***Admin*** > ***Paramètres du conteneur***
 - Changer ***l'URL du conteneur serveur***
 
+### Mise à jour du conteneur web
+
 Dès que l'URL est changée, vous pouvez ensuite changer l'URL du conteneur web.
 
+### Code d'intégration
 
 ```html
 <!-- Google Tag Manager -->
@@ -41,6 +46,8 @@ Dès que l'URL est changée, vous pouvez ensuite changer l'URL du conteneur web.
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 ```
+
+## Publication des modifications
 
 :::warning
 Pensez à bien publier les changement du conteneur serveur pour que le conteneur web puisse encore fonctionner.

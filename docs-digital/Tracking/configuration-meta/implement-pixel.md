@@ -4,14 +4,19 @@ sidebar_position: 2
 
 # Intégration site web
 
+## Configuration du Pixel Meta
+
 Création du Pixel Meta depuis le **Gestionnaire d'Évènements**
 
+### Intégration du code
 
 Une fois le pixel créé, il est temps de l'intégrer au site web.
 
 Pour se faire, il faut aller dans le **Gestionnaire d'Évènements** et cliquez sur **Gérer intégrations** > **Ajouter une nouvelle intégration** > **Pixel Meta** > **Ajouter un code manuellement à votre site web**
 
 ![Ajouter une nouvelle intégration](./img/integration-pixel.png)
+
+### Installation du code
 
 Copiez puis activer la correspondance avancée et ensuite collez le code dans le ```<head>``` de votre site web
 
@@ -21,10 +26,11 @@ Si vous n'avez pas pu activer la **correspondance avancée automatique sur le si
 
 :::
 
-### Le code devrait ressembler à ceci
+### Exemple de code
+
+Le code devrait ressembler à ceci
 
 ```html
-<!-- Meta Pixel Code -->
 <!-- Meta Pixel Code -->
 <script>
   !(function (f, b, e, v, n, t, s) {
@@ -59,8 +65,9 @@ Si vous n'avez pas pu activer la **correspondance avancée automatique sur le si
     src="https://www.facebook.com/tr?id=<ID_de_l’ensemble_de_données>&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-<!-- End Meta Pixel Code -->
 ```
+
+## Vérification de l'installation
 
 :::tip
 

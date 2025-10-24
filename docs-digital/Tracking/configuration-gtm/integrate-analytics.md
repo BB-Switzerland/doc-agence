@@ -8,9 +8,13 @@ Après avoir créer votre déclencheur et votre balise, il est temps d'intégrer
 
 ## Créer la balise de Google Analytics Configuration GA4
 
+### Configuration de la balise
+
 Dans ***Balises*** > ***Nouvelle*** > ***Balise Google***.
 
 Renseignez l'**ID de Mesure** de votre [Google Analytics](https://analytics.google.com/) qui se situe dans ***Administration*** > ***Flux de données***.
+
+### Paramètres de configuration
 
 Ajouter les **Paramètres de configuration**
 
@@ -29,11 +33,13 @@ _Paramètres de configuration_
 
 ## Créer une balise Google Analytics : Événement GA4
 
+### Configuration de la balise événement
+
 Dans ***Balises*** > ***Nouvelle*** > ***Google Analytics*** > ***Google Analytics : Événement GA4***.
 
 Renseignez l'**ID de Mesure** de votre [Google Analytics](https://analytics.google.com/) qui se situe dans ***Administration*** > ***Flux de données***.
 
-## Nommer votre balise **Google Analytics : Événement GA4**
+### Nommer votre balise **Google Analytics : Événement GA4**
 
 En général la balise d'évènement porte le même nom que que la balise de **Suivi des conversions Google Ads** mais avec ` Event GA4 ` devant (cf. [Création d'une Balise GTM](./create-tag.md)).
 
@@ -41,7 +47,7 @@ En général la balise d'évènement porte le même nom que que la balise de **S
 Event GA4 - Clic - Contact
 ```
 
-## Ajouter le nom de l'évènement (e.g)
+### Ajouter le nom de l'évènement (e.g)
 
 ```
 clic_contact
@@ -53,7 +59,7 @@ Les noms d'évènements s'écrivent en génral comme suit : **Nom_Evenement**.
 
 :::
 
-## Paramètres d'évènement
+### Paramètres d'évènement
 
 Dans la section **Paramètre d'événement** renseignez ces paramètres qui vont permettre par la suite de faire le lien avec le Pixel Meta.
 
@@ -63,6 +69,6 @@ Dans la section **Paramètre d'événement** renseignez ces paramètres qui vont
 | actions_source            | website          |
 
 
-## Ajoutez le Déclencheur
+### Ajoutez le Déclencheur
 
 Ajoutez le **Déclencheur** créé précédemment.
