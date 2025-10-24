@@ -15,7 +15,6 @@ function log(...args) {
 const privatePaths = [
   "/digital/category/-tracking",
   "/digital/Tracking/",
-  "/onboarding",
 ];
 function isPrivatePath(pathname) {
   return privatePaths.some((p) => pathname.startsWith(p));
@@ -31,24 +30,7 @@ function isAllowedDomain(user) {
   return allowedDomains.some((suffix) => user.email.endsWith(suffix));
 }
 
-// ------------------------------
-// Utils DOM
-// ------------------------------
-function showBody() {
-  try {
-    document.body.style.display = "block";
-  } catch (_) {}
-}
-function hideBody() {
-  try {
-    document.body.style.display = "none";
-  } catch (_) {}
-}
 
-// Si la page n'est pas privée → afficher le contenu directement
-if (typeof window !== "undefined" && !isPrivatePath(window.location.pathname)) {
-  showBody();
-}
 
 (async () => {
   const dynamicImport = (url) => new Function("u", "return import(u)")(url);
@@ -152,14 +134,12 @@ if (typeof window !== "undefined" && !isPrivatePath(window.location.pathname)) {
   // ------------------------------
   async function checkAndHandleAccess(pathname) {
     log("checkAndHandleAccess:", pathname);
-    hideBody();
 
     const user = auth.currentUser;
 
     // 🧩 Correction : afficher le body si non connecté sur page publique ou login
     if (!user) {
       if (pathname === "/login" || !isPrivatePath(pathname)) {
-        showBody();
         return;
       }
       await redirectToLogin();
@@ -216,7 +196,6 @@ if (typeof window !== "undefined" && !isPrivatePath(window.location.pathname)) {
     } catch (_) {}
 
     log("✅ Access granted:", user.email, "role:", role);
-    showBody();
   }
 
   // ------------------------------
