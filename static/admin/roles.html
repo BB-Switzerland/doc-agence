@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin — Gestion des rôles</title>
 
+    <!-- favicon -->
+    <link
+      rel="icon"
+      href="../img/BBS.png"
+      sizes="32x32"
+    />
+
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Police -->
@@ -12,6 +19,9 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Vue.js 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
     <style>
       :root {
@@ -33,13 +43,13 @@
 
       .card {
         background: #3b3c3d;
-        border: 1px solid #4b4c4d;
+        border: 1px solid white;
       }
 
       select {
         background-color: #2b2c2d;
         color: var(--bb-light);
-        border: 1px solid #4b4c4d;
+        border: 1px solid white;
         border-radius: 6px;
         padding: 0.4rem 0.6rem;
         font-size: 0.9rem;
@@ -47,7 +57,7 @@
 
       select:focus {
         outline: none;
-        border-color: var(--bb-primary);
+        border-color:rgba(255, 255, 255, 0.5);
         box-shadow: 0 0 0 2px rgba(210, 220, 101, 0.3);
       }
 
@@ -69,44 +79,71 @@
   </head>
 
   <body class="flex flex-col items-center py-10">
-    <div class="w-full max-w-4xl p-8 rounded-xl card shadow-lg fade">
+    <div id="app" class="w-full max-w-5xl p-8 rounded-xl card shadow-lg fade">
       <div class="flex items-center justify-between mb-8">
         <h1 class="text-2xl font-bold">Gestion des rôles</h1>
       </div>
 
-      <!-- 🔹 Récapitulatif des accès -->
+      <!-- 🔹 Récapitulatif -->
       <div class="mb-8">
         <h2 class="text-lg font-semibold mb-2 text-[var(--bb-primary)]">
           Droits d’accès
         </h2>
         <div class="text-sm text-gray-300 space-y-2 leading-relaxed">
-          <p>
-            <strong>Admin</strong> — accès complet à toutes les sections, y compris les
-            chemins protégés (<code>/digital</code>,
-            <code>/Tracking</code>) et à cette page d’administration.
-          </p>
-          <p>
-            <strong>Collaborateur</strong> — mêmes permissions que l’administrateur,
-            avec accès complet à toutes les pages du site.
-          </p>
-          <p>
-            <strong>Stagiaire</strong> — accès à tout le site
-            <strong>hors</strong> des chemins protégés :
-            <code>/digital/category/-tracking</code>,
-            <code>/digital/Tracking/</code>
-          </p>
-          <p>
-            <strong>Pending</strong> — utilisateur en attente de validation, avec le
-            même accès limité qu’un stagiaire (aucune page privée).
-          </p>
+          <p><strong>Admin</strong> — accès complet à toutes les sections.</p>
+          <p><strong>Collaborateur</strong> — accès complet mais non admin.</p>
+          <p><strong>Stagiaire</strong> — accès restreint. mais pas à <code>/Tracking</code></p>
+          <p><strong>Pending</strong> — utilisateur en attente.</p>
         </div>
       </div>
 
-      <p id="status" class="text-gray-300 mb-6 text-sm">Chargement...</p>
+      <p v-if="!user" class="text-gray-300 mb-6 text-sm">Connexion requise...</p>
+      <p v-else class="text-gray-300 mb-6 text-sm">
+        Connecté en tant que <strong>{{ user.email }}</strong>
+      </p>
 
-      <div id="users" class="space-y-3"></div>
+      <!-- Groupes -->
+      <div v-for="role in roleOrder" :key="role" class="rounded-lg border border-white-700 overflow-hidden mb-6">
+        <div class="bg-[#2f3031] px-4 py-3 font-semibold text-[var(--bb-primary)] uppercase text-sm flex justify-between">
+          <span>{{ roleLabels[role] }}</span>
+          <span class="text-gray-400 font-normal text-xs">
+            {{ groupedUsers[role]?.length || 0 }} utilisateur<span v-if="groupedUsers[role]?.length > 1">s</span>
+          </span>
+        </div>
+
+        <table class="min-w-full text-sm text-gray-200 bg-[#3b3c3d]">
+          <tbody class="divide-y divide-white-700">
+            <tr
+              v-for="(u, i) in groupedUsers[role]"
+              :key="u.email"
+              class="hover:bg-[#48494a] transition duration-150 ease-in-out"
+            >
+              <td class="px-6 py-4">
+                <div class="flex flex-col">
+                  <span class="font-medium text-white">{{ u.email }}</span>
+                  <span class="text-xs text-gray-400">{{ u.name || "" }}</span>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-right">
+                <select
+                  v-model="u.role"
+                  @change="updateRole(u)"
+                  class="w-40"
+                >
+                  <option v-for="r in roleOrder" :key="r" :value="r">{{ r }}</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr v-if="!groupedUsers[role] || groupedUsers[role].length === 0">
+              <td class="px-6 py-4 text-gray-500 italic">Aucun utilisateur</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
+    <!-- Firebase -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
       import {
@@ -124,9 +161,6 @@
         updateDoc,
       } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-      // ------------------------------
-      // Config Firebase
-      // ------------------------------
       const firebaseConfig = {
         apiKey: "AIzaSyCOI4zCnBxJ00okt2xBvJhwfZeu4ULAy8s",
         authDomain: "bbs-doc.firebaseapp.com",
@@ -136,109 +170,81 @@
         appId: "1:202877079803:web:bfa7530a95490c11a8605e",
       };
 
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db = getFirestore(app);
+      const appFB = initializeApp(firebaseConfig);
+      const auth = getAuth(appFB);
+      const db = getFirestore(appFB);
       const provider = new GoogleAuthProvider();
 
-      const usersDiv = document.getElementById("users");
-      const statusEl = document.getElementById("status");
+      const { createApp, reactive, computed } = Vue;
 
-      // ------------------------------
-      // Vérifie que l'utilisateur est admin
-      // ------------------------------
-      async function requireAdmin(user) {
-        const ref = doc(db, "roles", user.email);
-        const snap = await getDoc(ref);
+      createApp({
+        setup() {
+          const state = reactive({
+            user: null,
+            users: [],
+            roleOrder: ["admin", "collaborateur", "stagiaire", "pending"],
+            roleLabels: {
+              admin: "Administrateurs",
+              collaborateur: "Collaborateurs",
+              stagiaire: "Stagiaires",
+              pending: "En attente",
+            },
+          });
 
-        if (!snap.exists() || snap.data().role !== "admin") {
-          // Redirection propre sans alert ni logout
-          window.location = "/";
-          throw new Error("not_admin");
-        }
-        return true;
-      }
+          // Regroupe les utilisateurs par rôle
+          const groupedUsers = computed(() => {
+            const groups = {};
+            state.roleOrder.forEach((r) => (groups[r] = []));
+            state.users.forEach((u) => {
+              if (!groups[u.role]) groups[u.role] = [];
+              groups[u.role].push(u);
+            });
+            return groups;
+          });
 
-      // ------------------------------
-      // Chargement des utilisateurs Firestore
-      // ------------------------------
-      async function loadUsers() {
-        usersDiv.innerHTML =
-          '<p class="text-gray-400 italic">Chargement des rôles...</p>';
-        const querySnapshot = await getDocs(collection(db, "roles"));
-        usersDiv.innerHTML = "";
+          async function requireAdmin(user) {
+            const ref = doc(db, "roles", user.email);
+            const snap = await getDoc(ref);
+            if (!snap.exists() || snap.data().role !== "admin") {
+              window.location = "/";
+              throw new Error("not_admin");
+            }
+          }
 
-        querySnapshot.forEach((docSnap) => {
-          const data = docSnap.data();
-          const email = docSnap.id;
-          const role = data.role || "pending";
+          async function loadUsers() {
+            const q = await getDocs(collection(db, "roles"));
+            state.users = [];
+            q.forEach((docSnap) => {
+              state.users.push({
+                email: docSnap.id,
+                role: docSnap.data().role || "pending",
+                name: docSnap.data().name || "",
+              });
+            });
+          }
 
-          const div = document.createElement("div");
-          div.className =
-            "flex justify-between items-center card p-4 rounded-lg transition hover:bg-[#444]";
-          div.innerHTML = `
-            <div>
-              <p class="font-medium text-white">${email}</p>
-              <p class="text-xs text-gray-400">${role}</p>
-            </div>
-            <select data-email="${email}">
-              <option value="pending" ${
-                role === "pending" ? "selected" : ""
-              }>pending</option>
-              <option value="admin" ${
-                role === "admin" ? "selected" : ""
-              }>admin</option>
-              <option value="collaborateur" ${
-                role === "collaborateur" ? "selected" : ""
-              }>collaborateur</option>
-              <option value="stagiaire" ${
-                role === "stagiaire" ? "selected" : ""
-              }>stagiaire</option>
-            </select>
-          `;
-          usersDiv.appendChild(div);
-        });
+          async function updateRole(u) {
+            await updateDoc(doc(db, "roles", u.email), { role: u.role });
+          }
 
-        if (!querySnapshot.size) {
-          usersDiv.innerHTML =
-            '<p class="text-gray-400 text-center italic">Aucun utilisateur trouvé.</p>';
-        }
-      }
+          // Authentification
+          onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+              await signInWithPopup(auth, provider);
+              return;
+            }
+            state.user = user;
+            await requireAdmin(user);
+            await loadUsers();
+          });
 
-      // ------------------------------
-      // Gestion de l’état d’authentification
-      // ------------------------------
-      onAuthStateChanged(auth, async (user) => {
-        if (!user) {
-          statusEl.textContent = "Connexion requise...";
-          await signInWithPopup(auth, provider);
-          return;
-        }
-
-        statusEl.innerHTML =
-          "Connecté en tant qu'<strong>" + user.email + "</strong>";
-
-        try {
-          await requireAdmin(user);
-        } catch {
-          return;
-        }
-
-        await loadUsers();
-      });
-
-      // ------------------------------
-      // Modification du rôle utilisateur
-      // ------------------------------
-      document.addEventListener("change", async (e) => {
-        if (e.target.tagName === "SELECT") {
-          const email = e.target.dataset.email;
-          const newRole = e.target.value;
-          await updateDoc(doc(db, "roles", email), { role: newRole });
-          e.target.style.borderColor = "#d2dc65";
-          setTimeout(() => (e.target.style.borderColor = "#4b4c4d"), 600);
-        }
-      });
+          return {
+            ...Vue.toRefs(state),
+            groupedUsers,
+            updateRole,
+          };
+        },
+      }).mount("#app");
     </script>
   </body>
 </html>
