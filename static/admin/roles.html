@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — Gestion des rôles</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Police -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bb-primary: #d2dc65;
+        --bb-dark: #2b2c2d;
+        --bb-light: #f2f2f2;
+      }
+
+      body {
+        font-family: "Roboto Flex", sans-serif;
+        background-color: var(--bb-dark);
+        color: var(--bb-light);
+        min-height: 100vh;
+      }
+
+      h1 {
+        color: var(--bb-primary);
+      }
+
+      .card {
+        background: #3b3c3d;
+        border: 1px solid #4b4c4d;
+      }
+
+      select {
+        background-color: #2b2c2d;
+        color: var(--bb-light);
+        border: 1px solid #4b4c4d;
+        border-radius: 6px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+      }
+
+      select:focus {
+        outline: none;
+        border-color: var(--bb-primary);
+        box-shadow: 0 0 0 2px rgba(210, 220, 101, 0.3);
+      }
+
+      .fade {
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="flex flex-col items-center py-10">
+    <div class="w-full max-w-4xl p-8 rounded-xl card shadow-lg fade">
+      <div class="flex items-center justify-between mb-8">
+        <h1 class="text-2xl font-bold">Gestion des rôles</h1>
+      </div>
+
+      <!-- 🔹 Récapitulatif des accès -->
+      <div class="mb-8">
+        <h2 class="text-lg font-semibold mb-2 text-[var(--bb-primary)]">
+          Droits d’accès
+        </h2>
+        <div class="text-sm text-gray-300 space-y-2 leading-relaxed">
+          <p>
+            <strong>Admin</strong> — accès complet à toutes les sections, y compris les
+            chemins protégés (<code>/digital</code>, <code>/onboarding</code>,
+            <code>/Tracking</code>) et à cette page d’administration.
+          </p>
+          <p>
+            <strong>Collaborateur</strong> — mêmes permissions que l’administrateur,
+            avec accès complet à toutes les pages du site.
+          </p>
+          <p>
+            <strong>Stagiaire</strong> — accès à tout le site
+            <strong>hors</strong> des chemins protégés :
+            <code>/digital/category/-tracking</code>,
+            <code>/digital/Tracking/</code>,
+            <code>/onboarding</code>.
+          </p>
+          <p>
+            <strong>Pending</strong> — utilisateur en attente de validation, avec le
+            même accès limité qu’un stagiaire (aucune page privée).
+          </p>
+        </div>
+      </div>
+
+      <p id="status" class="text-gray-300 mb-6 text-sm">Chargement...</p>
+
+      <div id="users" class="space-y-3"></div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        GoogleAuthProvider,
+        signInWithPopup,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        doc,
+        getDoc,
+        updateDoc,
+      } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+      // ------------------------------
+      // Config Firebase
+      // ------------------------------
+      const firebaseConfig = {
+        apiKey: "AIzaSyCOI4zCnBxJ00okt2xBvJhwfZeu4ULAy8s",
+        authDomain: "bbs-doc.firebaseapp.com",
+        projectId: "bbs-doc",
+        storageBucket: "bbs-doc.firebasestorage.app",
+        messagingSenderId: "202877079803",
+        appId: "1:202877079803:web:bfa7530a95490c11a8605e",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      const provider = new GoogleAuthProvider();
+
+      const usersDiv = document.getElementById("users");
+      const statusEl = document.getElementById("status");
+
+      // ------------------------------
+      // Vérifie que l'utilisateur est admin
+      // ------------------------------
+      async function requireAdmin(user) {
+        const ref = doc(db, "roles", user.email);
+        const snap = await getDoc(ref);
+
+        if (!snap.exists() || snap.data().role !== "admin") {
+          // Redirection propre sans alert ni logout
+          window.location = "/";
+          throw new Error("not_admin");
+        }
+        return true;
+      }
+
+      // ------------------------------
+      // Chargement des utilisateurs Firestore
+      // ------------------------------
+      async function loadUsers() {
+        usersDiv.innerHTML =
+          '<p class="text-gray-400 italic">Chargement des rôles...</p>';
+        const querySnapshot = await getDocs(collection(db, "roles"));
+        usersDiv.innerHTML = "";
+
+        querySnapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const email = docSnap.id;
+          const role = data.role || "pending";
+
+          const div = document.createElement("div");
+          div.className =
+            "flex justify-between items-center card p-4 rounded-lg transition hover:bg-[#444]";
+          div.innerHTML = `
+            <div>
+              <p class="font-medium text-white">${email}</p>
+              <p class="text-xs text-gray-400">${role}</p>
+            </div>
+            <select data-email="${email}">
+              <option value="pending" ${
+                role === "pending" ? "selected" : ""
+              }>pending</option>
+              <option value="admin" ${
+                role === "admin" ? "selected" : ""
+              }>admin</option>
+              <option value="collaborateur" ${
+                role === "collaborateur" ? "selected" : ""
+              }>collaborateur</option>
+              <option value="stagiaire" ${
+                role === "stagiaire" ? "selected" : ""
+              }>stagiaire</option>
+            </select>
+          `;
+          usersDiv.appendChild(div);
+        });
+
+        if (!querySnapshot.size) {
+          usersDiv.innerHTML =
+            '<p class="text-gray-400 text-center italic">Aucun utilisateur trouvé.</p>';
+        }
+      }
+
+      // ------------------------------
+      // Gestion de l’état d’authentification
+      // ------------------------------
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          statusEl.textContent = "Connexion requise...";
+          await signInWithPopup(auth, provider);
+          return;
+        }
+
+        statusEl.innerHTML =
+          "Connecté en tant qu'<strong>" + user.email + "</strong>";
+
+        try {
+          await requireAdmin(user);
+        } catch {
+          return;
+        }
+
+        await loadUsers();
+      });
+
+      // ------------------------------
+      // Modification du rôle utilisateur
+      // ------------------------------
+      document.addEventListener("change", async (e) => {
+        if (e.target.tagName === "SELECT") {
+          const email = e.target.dataset.email;
+          const newRole = e.target.value;
+          await updateDoc(doc(db, "roles", email), { role: newRole });
+          e.target.style.borderColor = "#d2dc65";
+          setTimeout(() => (e.target.style.borderColor = "#4b4c4d"), 600);
+        }
+      });
+    </script>
+  </body>
+</html>
