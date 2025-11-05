@@ -18,10 +18,24 @@ Si ces conditions ne sont pas respectées, **Google Tag Manager ne sera pas char
 
 ## Checklist d’installation
 
-1. Créer une **boutique personnalisée**
-2. Accéder à la billetterie
-3. Ouvrir **Options Développeur**
-4. Coller les scripts GTM + Pixel Meta dans **Options Développeur**
+1. Ticketing > Votre événement > Portail Billetterie > Boutique en ligne
+2. Créer une **boutique personnalisée**
+3. Accéder à la billetterie
+4. Ouvrir **Développeur**
+5. Coller les scripts GTM + Pixel Meta dans **Options Développeur**
+
+
+<!-- Images -->
+
+![Billetterie-infomaniak.png](./img/Boutique-Infomaniak.png)
+
+![infomaniak-dev-options](./img/dev-settings.png)
+
+---
+
+:::warning
+Pensez à bien selectionner votre **évènement** dans l'onglet **Contenu** de la boutique personnalisée pour que votre event soit bien rattaché à la billetterie.
+:::
 
 ---
 
@@ -30,7 +44,7 @@ Si ces conditions ne sont pas respectées, **Google Tag Manager ne sera pas char
 
 :::tip Avant d'ajouter
 
-- Remplacez `GTM-XXXXXXXX`, `G-XXXXXX` et `XXXXXXXXXX` par vos identifiants réels.
+- Remplacez [`GTM-XXXXXXXX`](#id-gtm), [`G-XXXXXX`](#id-ga4) et [`XXXXXXXXXX`](#id-fb-pixel) par vos identifiants réels.
 - Si vous gérez GA4 et Meta via GTM, préférez la configuration via des balises GTM et retirez les scripts directs pour faciliter la maintenance et la gestion du consentement.
 
 :::
@@ -90,9 +104,9 @@ src="https://www.facebook.com/tr?id=XXXXXXXXXX&ev=PageView&noscript=1"
 
 Ce script écoute les événements standards émis par la billetterie Infomaniak et les pousse vers GA4 via `dataLayer`/`gtag`. Pensez à :
 
-- vérifier les propriétés disponibles dans `e.detail` (ex. `currency`, `topaid`) avant de les utiliser ;
-- mapper les événements vers les événements standards Meta (ex. `AddToCart`, `Purchase`) si vous souhaitez également alimenter le Pixel ;
-- tester en mode Aperçu GTM / DebugView GA4 et avec Meta Pixel Helper.
+- Créer les différentes balises pour ces évènements standards (ex. `AddToCart`, `Purchase` pour Meta)
+- Tester en mode Aperçu GTM / DebugView GA4 et avec Meta Pixel Helper.
+- **Publier**  les modifications du conteneur GTM une fois les tests validés.
 
 :::
 
@@ -143,3 +157,30 @@ Vous pouvez ensuite mapper ces événements vers Meta Pixel dans GTM selon vos b
 </script>
 ```
 
+<a id="id-fb-pixel"></a>
+
+:::tip pour retrouver l'id de l'ensemble de données de Meta
+Allez dans le **Gestionnaire d'événements** de votre compte Meta Business
+
+![meta-events-manager](./img/FB-ID.png)
+
+:::
+
+<a id="id-gtm"></a>
+
+:::tip Pour retrouver l'id du conteneur GTM
+Allez dans votre compte Google Tag Manager et copiez l'ID du conteneur
+
+![gtm-id](./img/GTM-ID.png)
+
+:::
+
+<a id="id-ga4"></a>
+
+:::tip Pour retrouver l'id de mesure GA4
+1. **Administration**
+2. **Flux de données**
+3. Cliquez sur votre flux web
+4. Copiez l'**ID de mesure**
+
+![ga4-measurement-id](./img/G-ID.png)
