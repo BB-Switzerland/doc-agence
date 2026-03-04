@@ -13,8 +13,7 @@ function log(...args) {
 // Config des routes protégées
 // ------------------------------
 const privatePaths = [
-  "/digital/category/-tracking",
-  "/digital/Tracking/",
+  "/digital/tracking",  // Protection de toute la section tracking
 ];
 function isPrivatePath(pathname) {
   return privatePaths.some((p) => pathname.startsWith(p));
@@ -193,9 +192,15 @@ function isAllowedDomain(user) {
       document.cookie = `bb_email=${encodeURIComponent(
         user.email
       )}; Path=/; Max-Age=${maxAge}; SameSite=Lax`;
+      document.cookie = `bb_role=${encodeURIComponent(
+        role
+      )}; Path=/; Max-Age=${maxAge}; SameSite=Lax`;
     } catch (_) {}
 
     log("✅ Access granted:", user.email, "role:", role);
+
+    // Émettre un événement pour notifier les composants React
+    window.dispatchEvent(new CustomEvent('bb:authchange', { detail: { role, email: user.email } }));
   }
 
   // ------------------------------
@@ -220,6 +225,7 @@ function isAllowedDomain(user) {
     try {
       document.cookie = "bb_auth=; Path=/; Max-Age=0; SameSite=Lax";
       document.cookie = "bb_email=; Path=/; Max-Age=0; SameSite=Lax";
+      document.cookie = "bb_role=; Path=/; Max-Age=0; SameSite=Lax";
     } catch (_) {}
     return signOut(auth);
   };

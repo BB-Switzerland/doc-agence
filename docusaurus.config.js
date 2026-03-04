@@ -94,7 +94,10 @@ const config = {
   ],
 
   // Charge des scripts globaux côté client (servis depuis /static)
-  scripts: [{ src: "/auth.js", type: "module" }],
+  scripts: [
+    { src: "/auth.js", type: "module" },
+    { src: "/tracking-visibility.js" },
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */

@@ -170,3 +170,26 @@ footer.DocSearch-Footer {
 main{
   margin-bottom: 100px;
 }
+
+/* ============================================
+   Masquage de la section Tracking selon les permissions
+   ============================================ */
+
+/**
+ * Masque la catégorie "🎯 Tracking" dans la sidebar
+ * pour les utilisateurs qui n'ont pas les droits d'accès
+ * (défini par la classe .no-tracking-access sur le body)
+ */
+body.no-tracking-access .menu__list-item:has([title*="Tracking"]) {
+  display: none !important;
+}
+
+/* Masque aussi les liens directs vers /tracking */
+body.no-tracking-access a[href*="/tracking"] {
+  display: none !important;
+}
+
+/* Masque le parent si c'est un item de catégorie */
+body.no-tracking-access li:has(.categoryLinkLabel_W154[title*="Tracking"]) {
+  display: none !important;
+}
