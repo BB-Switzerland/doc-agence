@@ -24,9 +24,12 @@ export default async function middleware(request) {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   // Filtrage IP global (si défini en variable d'environnement)
   try {
-    const ALLOWED_IP = process.env.BB_IP_WHITELIST;
-    console.log('[mw] visitor ip', ip, 'allowed_ip_env', ALLOWED_IP);
-    if (ALLOWED_IP && ip !== ALLOWED_IP) {
+    const ALLOWED_IPS = (process.env.BB_IP_WHITELIST || '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+    console.log('[mw] visitor ip', ip, 'allowed_ips_env', ALLOWED_IPS);
+    if (ALLOWED_IPS.length && !ALLOWED_IPS.includes(ip)) {
       console.log('[mw] Access denied 🚫 for', ip);
       return new Response('Access denied', { status: 403 });
     }
