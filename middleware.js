@@ -5,6 +5,9 @@ export const config = {
 // Liste des chemins privés (doit refléter static/auth.js)
 const PRIVATE_PREFIXES = ["/digital", "/onboarding"]; // ajuste ici si besoin
 
+// IPs autorisées à crawler le contenu privé (ex: Algolia Crawler)
+const CRAWLER_IPS = ["34.66.202.43"];
+
 function isPrivatePath(pathname) {
   return PRIVATE_PREFIXES.some((p) => pathname.startsWith(p));
 }
@@ -55,6 +58,12 @@ export default async function middleware(request) {
   // Privé: exige le cookie déposé par static/auth.js après login Firebase
   if (cookies.bb_auth === "1") {
     console.log("[mw] access granted ✅", cookies.bb_email || "(no email)");
+    return fetch(request);
+  }
+
+  // Bypass auth pour les crawlers autorisés (Algolia)
+  if (CRAWLER_IPS.includes(ip)) {
+    console.log("[mw] crawler access granted 🤖", ip);
     return fetch(request);
   }
 
