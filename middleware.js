@@ -3,7 +3,7 @@ export const config = {
 };
 
 // Liste des chemins privés (doit refléter static/auth.js)
-const PRIVATE_PREFIXES = ["/digital", "/onboarding"]; // ajuste ici si besoin
+const PRIVATE_PREFIXES = ["/digital", "/onboarding", "/monday"]; // ajuste ici si besoin
 
 // IPs autorisées à crawler le contenu privé (ex: Algolia Crawler)
 const CRAWLER_IPS = ["34.66.202.43"];

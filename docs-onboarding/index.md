@@ -4,6 +4,14 @@ sidebar_position: 1
 
 # Onboarding client BBS
 
+:::danger Process obsolète
+Ce flux (**Salesforce → macro Excel → import Monday**) **n'est plus d'actualité** : l'agence a quitté Salesforce.
+
+➡️ Réfère-toi désormais à **[Monday 2.0 → Onboarder un projet depuis un devis (Sidekick)](/monday/work-management/onboarding-projet-sidekick)**.
+
+Cette page est conservée à titre d'archive.
+:::
+
 :::warning
 ➡️ **+1 jour** après le changement du statut en « signé » dans Salesforce, un lien apparaît dans le canal **`onboarding-monday`**.
 :::

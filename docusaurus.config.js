@@ -91,6 +91,15 @@ const config = {
         sidebarPath: require.resolve("./sidebarsOnboarding.js"),
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "monday",
+        path: "docs-monday", // Dossier de ta doc Monday (CRM + Work Management)
+        routeBasePath: "monday", // URL => /monday
+        sidebarPath: require.resolve("./sidebarsMonday.js"),
+      },
+    ],
   ],
 
   // Charge des scripts globaux côté client (servis depuis /static)
@@ -121,9 +130,14 @@ const config = {
             label: "Digital & Web",
             position: "left",
           },
+          // {
+          //   to: "/onboarding", // page d'accueil Onboarding
+          //   label: "Onboarding",
+          //   position: "left",
+          // },
           {
-            to: "/onboarding", // page d'accueil Onboarding
-            label: "Onboarding",
+            to: "/monday", // page d'accueil Monday (CRM + Work Management)
+            label: "Monday 2.0",
             position: "left",
           },
           {

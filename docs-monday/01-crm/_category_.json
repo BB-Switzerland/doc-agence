@@ -1,0 +1,8 @@
+{
+  "label": "CRM — Pistes, Contacts, Opportunités",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Du premier lead au devis signé : qualifier une piste, la convertir, créer l'opportunité et générer le devis."
+  }
+}

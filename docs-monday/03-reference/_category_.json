@@ -1,0 +1,8 @@
+{
+  "label": "Référence technique",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "IDs des boards, mapping des colonnes, prompt Sidekick et glossaire."
+  }
+}
