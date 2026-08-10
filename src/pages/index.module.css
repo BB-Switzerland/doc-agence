@@ -1,75 +1,267 @@
 /**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
+ * Page d'accueil.
+ *
+ * Couleurs : celles que le Devis Creator utilise déjà pour catégoriser les
+ * prestations. Une section de la doc = un pôle = une couleur.
+ *
+ * Typographie : Roboto Flex en variable. Le contraste de largeur (axe wdth)
+ * porte la hiérarchie, titre très large contre étiquettes très condensées.
  */
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--ifm-color-primary-lightest);
+.hero,
+.main {
+  --bb-rh: #e11e84;
+  --bb-digital: #b3bd2e;
+  --bb-monday: #487cbc;
+  --bb-rule: var(--ifm-color-emphasis-300);
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+:global(html[data-theme="dark"]) .hero,
+:global(html[data-theme="dark"]) .main {
+  /* Le jaune-vert de marque ne passe qu'en fond sombre */
+  --bb-digital: #d2dc65;
+  --bb-monday: #7aa9e0;
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
+/* ------------------------------------------------------------------ hero */
+
+.hero {
+  padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(2rem, 4vw, 3rem);
 }
 
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
+.heroInner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ifm-container-width);
+  margin: 0 auto;
+  padding: 0 var(--ifm-spacing-horizontal);
+}
+
+.eyebrow {
+  font-variation-settings: "wght" 700, "wdth" 62, "opsz" 12;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0 0 1.25rem;
+}
+
+.heroTitle {
+  font-variation-settings: "wght" 900, "wdth" 140, "opsz" 144;
+  font-size: clamp(2.75rem, 9vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  margin: 0;
+  color: var(--ifm-heading-color);
+}
+
+.heroLead {
+  font-variation-settings: "wght" 380, "wdth" 100, "opsz" 18;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--ifm-color-emphasis-700);
+  max-width: 34ch;
+  margin: 1.5rem 0 0;
+}
+
+.heroSearch {
+  margin-top: 2.25rem;
+  max-width: min(30rem, 100%);
+}
+
+.heroSearch button {
   width: 100%;
 }
 
-.featureIcon {
+/* Trois segments, un par section : la légende du grid qui suit. */
+.spectrum {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  max-width: min(22rem, 100%);
+}
+
+.spectrum span {
+  height: 4px;
+  border-radius: 2px;
+}
+
+.spectrum span[data-section="rh"] {
+  background: var(--bb-rh);
+}
+.spectrum span[data-section="digital"] {
+  background: var(--bb-digital);
+}
+.spectrum span[data-section="monday"] {
+  background: var(--bb-monday);
+}
+
+/* ----------------------------------------------------------------- cartes */
+
+.main {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--ifm-container-width);
+  /* annule le `main { margin-bottom: 100px }` global de custom.css */
+  margin: 0 auto !important;
+  padding: 0 var(--ifm-spacing-horizontal) clamp(4rem, 8vw, 7rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.5rem 1.5rem;
+  border: 1px solid var(--bb-rule);
+  border-radius: 6px;
+  background: var(--ifm-background-surface-color);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+/* Le filet coloré identifie la section, comme le segment du hero. */
+.card::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+  background: var(--card-accent);
+  transition: width 160ms ease;
+}
+
+.card[data-section="rh"] {
+  --card-accent: var(--bb-rh);
+}
+.card[data-section="digital"] {
+  --card-accent: var(--bb-digital);
+}
+.card[data-section="monday"] {
+  --card-accent: var(--bb-monday);
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--card-accent);
+  transform: translateY(-2px);
+}
+
+.card:hover::before,
+.card:focus-within::before {
+  width: 4rem;
+}
+
+.cardTitle {
+  font-variation-settings: "wght" 800, "wdth" 118, "opsz" 32;
+  font-size: 1.5rem;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.cardTitleLink,
+.cardTitleLink:hover {
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+}
+
+/* Le titre porte le lien, mais toute la carte est cliquable. */
+.cardTitleLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.cardTagline {
+  font-variation-settings: "wght" 400, "wdth" 100, "opsz" 16;
+  font-size: 0.9375rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0.625rem 0 1.5rem;
+}
+
+/* Les listes s'alignent par le haut : les cartes n'ont pas le même nombre
+   de liens, et un trou sous le chapeau se voyait plus qu'un trou en bas. */
+.cardLinks {
+  list-style: none;
+  margin: 0 0 auto;
+  padding: 0;
+  border-top: 1px solid var(--bb-rule);
+}
+
+.cardLinks li + li {
+  border-top: 1px solid var(--bb-rule);
+}
+
+.cardLink {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: var(--ifm-color-primary-lightest);
-  margin-bottom: 1rem;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6875rem 0;
+  font-variation-settings: "wght" 500, "wdth" 100, "opsz" 14;
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-800);
+  text-decoration: none;
 }
 
-html[data-theme="dark"] .featureIcon {
-  color: var(--bb-main-color);
+.cardLink::after {
+  content: "→";
+  color: var(--card-accent);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 140ms ease, transform 140ms ease;
 }
 
-html[data-theme="light"] .featureIcon {
-  color: white;
+.cardLink:hover,
+.cardLink:focus-visible {
+  color: var(--ifm-heading-color);
+  text-decoration: none;
 }
 
-.cardFooter {
-  margin-top: auto;
-  padding-top: 1rem;
+.cardLink:hover::after,
+.cardLink:focus-visible::after {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-.buttonIcon {
-  margin-left: 0.5rem;
-  vertical-align: middle;
+/* Une largeur de 140 déborde sur petit écran : on resserre le titre. */
+@media (max-width: 640px) {
+  .heroTitle {
+    font-variation-settings: "wght" 900, "wdth" 105, "opsz" 96;
+    letter-spacing: -0.02em;
+  }
 }
 
-.heroBanner h1,
-.heroBanner p {
-  color: white;
-}
-
-html[data-theme="dark"] .heroBanner h1,
-html[data-theme="dark"] .heroBanner p {
-  color: var(--bb-main-color);
-}
-
-.button.button--secondary {
-  color: white;
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::before,
+  .cardLink::after {
+    transition: none;
+  }
+  .card:hover,
+  .card:focus-within {
+    transform: none;
+  }
 }

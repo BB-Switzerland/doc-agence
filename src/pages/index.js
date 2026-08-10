@@ -1,119 +1,115 @@
-import clsx from "clsx";
+import React from "react";
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
-import styles from "./index.module.css";
-import {
-  BookOpen,
-  Users,
-  ArrowRight,
-  Globe,
-  Megaphone,
-  BarChart3,
-  FileCode,
-} from "lucide-react";
 import SearchBar from "@theme/SearchBar";
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // si pas déjà importé ailleurs
+import styles from "./index.module.css";
 
-// Custom feature component for the homepage
-function FeatureCard({ title, description, icon, to }) {
-  return (
-    <div className="h-full" data-aos="fade-up" data-aos-duration="800">
-      <div className="card padding--lg height-full">
-        <div className={clsx(styles.featureIcon, "icon-feature")}>{icon}</div>
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-        <div className={styles.cardFooter}>
-          <Link className="button button--primary button--md" to={to}>
-            Accéder <ArrowRight className={styles.buttonIcon} size={16} />
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
+/**
+ * Les sections reprennent le code couleur que l'agence utilise déjà pour
+ * catégoriser ses prestations dans le Devis Creator.
+ * `restricted` masque la carte pour les stagiaires et les comptes en attente,
+ * en cohérence avec static/auth.js (voir .no-privileged-access).
+ */
+const SECTIONS = [
+  {
+    id: "rh",
+    name: "RH",
+    tagline: "Ton arrivée, tes outils, tes démarches.",
+    to: "/rh",
+    links: [
+      { label: "Starter pack", to: "/rh/category/starter-pack" },
+      { label: "Directives", to: "/rh/directives" },
+      { label: "Séances", to: "/rh/seance" },
+    ],
+  },
+  {
+    id: "digital",
+    name: "Digital & Web",
+    tagline: "Tracking, sites web, migrations, campagnes.",
+    to: "/digital",
+    restricted: true,
+    links: [
+      { label: "Tracking", to: "/digital/category/-tracking" },
+      { label: "Sites web BBS", to: "/digital/category/-sites-web-bbs" },
+      { label: "Migration WordPress", to: "/digital/category/-migration-site-wordpress" },
+      { label: "Campagnes Meta", to: "/digital/category/-campagnes-meta" },
+    ],
+  },
+  {
+    id: "monday",
+    name: "Monday 2.0",
+    tagline: "Du premier lead au projet livré.",
+    to: "/monday",
+    restricted: true,
+    links: [
+      { label: "CRM, du lead au devis", to: "/monday/crm" },
+      { label: "Projets, du devis à la livraison", to: "/monday/work-management" },
+      { label: "Référence technique", to: "/monday/reference/boards-et-colonnes" },
+    ],
+  },
+];
 
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
+function SectionCard({ section }) {
   return (
-    <header className={clsx("hero", styles.heroBanner)}>
-      <div className="container"  data-aos="fade-in" data-aos-duration="800">
-        <Heading as="h1" className="hero__title">
-          Documentation Interne
-        </Heading>
-        <p className="hero__subtitle">
-          Ressources, guides et processus pour l'équipe de l'agence BB.
-        </p>
-        {/* <div className={styles.buttons}>
-          <Link
-            className="button button--primary button--lg btn-intro hidden"
-            to="/docs"
-          >
-            Commencer ici
-          </Link>
-        </div> */}
-      </div>
-    </header>
+    <article
+      className={styles.card}
+      data-section={section.id}
+      data-restricted={section.restricted ? "true" : undefined}
+    >
+      <Heading as="h2" className={styles.cardTitle}>
+        <Link to={section.to} className={styles.cardTitleLink}>
+          {section.name}
+        </Link>
+      </Heading>
+      <p className={styles.cardTagline}>{section.tagline}</p>
+      <ul className={styles.cardLinks}>
+        {section.links.map((link) => (
+          <li key={link.to}>
+            <Link to={link.to} className={styles.cardLink}>
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 }
 
 export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
-  useEffect(() => {
-    AOS.init();
-  }, []);
   return (
     <Layout
-      title={`Accueil`}
-      description="Documentation interne pour les processus, guides et ressources de l'agence"
+      title="Accueil"
+      description="La documentation interne de l'agence BB® Switzerland : RH, Digital & Web, Monday."
     >
-      <HomepageHeader />
-      <main>
-        <section className={styles.features}>
-          <div className="container">
-            <div className="my-grid">
-              <FeatureCard
-                title="Processus Internes"
-                description="Découvrez les processus et méthodologies utilisés au sein de l'agence pour assurer une qualité constante."
-                icon={<BookOpen size={24} />}
-                to="/onboarding"
-              />
-              <FeatureCard
-                title="Informations RH"
-                description="Guide d'accueil pour les nouveaux collaborateurs, informations pratiques et politiques RH."
-                icon={<Users size={24} />}
-                to="/rh"
-              />
-              <FeatureCard
-                title="Gestion de Contenu"
-                description="Procédures pour l'alimentation et la mise à jour du contenu du site internet de l'agence."
-                icon={<Globe size={24} />}
-                to="/digital/category/-sites-web-bbs"
-              />
-              <FeatureCard
-                title="Migration de Sites Web"
-                description="Guides et bonnes pratiques pour la migration de sites web pour nos clients."
-                icon={<FileCode size={24} />}
-                to="/digital/category/-migration-site-wordpress"
-              />
-              <FeatureCard
-                title="Guide de Tracking"
-                description="Instructions détaillées pour l'implémentation et la gestion du tracking sur les sites web."
-                icon={<BarChart3 size={24} />}
-                to="/digital/category/-tracking"
-              />
-              <FeatureCard
-                title="Campagnes Meta"
-                description="Guide pour la création et la gestion des campagnes Meta pour les clients de l'agence."
-                icon={<Megaphone size={24} />}
-                to="/digital/category/-campagnes-meta"
-              />
-            </div>
+      <header className={styles.hero}>
+        <div className={styles.heroInner}>
+          <p className={styles.eyebrow}>BB® Switzerland</p>
+          <h1 className={styles.heroTitle}>
+            La doc
+            <br />
+            de l'agence
+          </h1>
+          <p className={styles.heroLead}>
+            Les process, les outils et les réponses, au même endroit.
+          </p>
+          <div className={styles.heroSearch}>
+            <SearchBar />
           </div>
-        </section>
+          <div className={styles.spectrum} aria-hidden="true">
+            {SECTIONS.map((section) => (
+              <span key={section.id} data-section={section.id} />
+            ))}
+          </div>
+        </div>
+      </header>
+
+      <main className={styles.main}>
+        <div className={styles.grid}>
+          {SECTIONS.map((section) => (
+            <SectionCard key={section.id} section={section} />
+          ))}
+        </div>
       </main>
     </Layout>
   );

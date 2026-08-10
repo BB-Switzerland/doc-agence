@@ -96,7 +96,9 @@
   color: var(--ifm-color-primary) !important;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap');
+/* Roboto Flex en variable, axes opsz + wdth + wght.
+   L'axe de largeur (wdth) sert au contraste typographique de l'accueil. */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap');
 
 body, h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, blockquote, code, pre, table, th, td {
   font-family: 'Roboto Flex', sans-serif !important;
@@ -202,5 +204,10 @@ body.no-privileged-access .navbar__item[href="/digital"],
 body.no-privileged-access .navbar__item[href="/monday"],
 body.no-privileged-access .menu__link[href="/digital"],
 body.no-privileged-access .menu__link[href="/monday"] {
+  display: none;
+}
+
+/* Cartes de l'accueil pointant vers une section réservée */
+body.no-privileged-access [data-restricted="true"] {
   display: none;
 }

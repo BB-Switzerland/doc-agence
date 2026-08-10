@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Si le lead vient du site ou du chatbot
 
-**Tu n'as rien à faire.** La ligne se crée toute seule et une notif part dans Slack.
+**Tu n'as rien à faire.** La ligne se crée toute seule et une notif part dans Google Chat.
 
 ## Si le lead vient du téléphone ou d'ailleurs
 
