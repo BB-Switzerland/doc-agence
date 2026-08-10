@@ -193,3 +193,14 @@ body.no-tracking-access a[href*="/tracking"] {
 body.no-tracking-access li:has(.categoryLinkLabel_W154[title*="Tracking"]) {
   display: none !important;
 }
+/* ------------------------------------------------------------------
+ * Sections réservées aux rôles privilégiés (admin, collaborateur).
+ * La classe est posée sur le body par static/tracking-visibility.js.
+ * Masquage visuel uniquement : le blocage réel est dans static/auth.js.
+ * ------------------------------------------------------------------ */
+body.no-privileged-access .navbar__item[href="/digital"],
+body.no-privileged-access .navbar__item[href="/monday"],
+body.no-privileged-access .menu__link[href="/digital"],
+body.no-privileged-access .menu__link[href="/monday"] {
+  display: none;
+}

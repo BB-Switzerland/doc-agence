@@ -12,9 +12,11 @@ function log(...args) {
 // ------------------------------
 // Config des routes protégées
 // ------------------------------
-// Chemins réservés aux rôles privilégiés (admin, collaborateur)
+// Chemins réservés aux rôles privilégiés (admin, collaborateur).
+// Les stagiaires et les comptes en attente y sont refusés.
 const privatePaths = [
-  "/digital/tracking",  // Protection de toute la section tracking
+  "/digital",   // toute la section Digital & Web, tracking compris
+  "/monday",    // toute la doc Monday 2.0
 ];
 function isPrivatePath(pathname) {
   return privatePaths.some((p) => pathname.startsWith(p));
@@ -25,9 +27,7 @@ function isPrivatePath(pathname) {
 // aucune requête serveur, donc middleware.js ne s'exécute pas.
 // À garder cohérent avec PRIVATE_PREFIXES dans middleware.js.
 const loginRequiredPaths = [
-  "/digital",
   "/onboarding",
-  "/monday",
 ];
 function isLoginRequiredPath(pathname) {
   return loginRequiredPaths.some((p) => pathname.startsWith(p));

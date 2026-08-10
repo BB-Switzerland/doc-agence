@@ -20,12 +20,14 @@
     const hasTrackingAccess = isAuthenticated && privilegedRoles.includes(role);
 
     // Ajouter ou retirer la classe sur le body
+    // no-privileged-access masque aussi les entrées de menu Digital & Web
+    // et Monday 2.0, réservées aux mêmes rôles (voir src/css/custom.css).
     if (hasTrackingAccess) {
-      document.body.classList.add('has-tracking-access');
-      document.body.classList.remove('no-tracking-access');
+      document.body.classList.add('has-tracking-access', 'has-privileged-access');
+      document.body.classList.remove('no-tracking-access', 'no-privileged-access');
     } else {
-      document.body.classList.add('no-tracking-access');
-      document.body.classList.remove('has-tracking-access');
+      document.body.classList.add('no-tracking-access', 'no-privileged-access');
+      document.body.classList.remove('has-tracking-access', 'has-privileged-access');
     }
 
     console.log('[tracking-visibility]', { role, isAuthenticated, hasTrackingAccess });
