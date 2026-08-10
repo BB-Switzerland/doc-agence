@@ -2,131 +2,162 @@
 sidebar_position: 4
 ---
 
-# Créer l'opportunité & générer le devis (Devis Creator)
+# 3. L'opportunité & le devis
 
-C'est ici que le deal prend forme : tu crées l'opportunité, puis tu produis le devis PDF avec l'app **Devis Creator**.
+Quatre temps : tu crées le deal, tu montes le devis dans l'app, tu sors le PDF, tu le fais signer.
 
-## Créer l'opportunité
+## A. Créer l'opportunité
 
-Rends-toi sur le board [Opportunités](https://agence-bb-ensemble.monday.com/boards/5093138639). Les groupes matérialisent le pipeline : Nouveau, Négociation, Conclu, Perdu.
+Sur le board [Opportunités](https://agence-bb-ensemble.monday.com/boards/5093138639), les groupes = le pipeline (Nouveau, Négociation, Conclu, Perdu).
 
-Renseigne le nom du deal, le commercial, l'étape officielle, le compte et la personne de contact. Deux champs demandent une attention particulière :
+Remplis : nom du deal, commercial, étape, **compte**, personne de contact. Puis **les deux champs qui comptent** :
 
-- **Introduction** — le texte de présentation du projet,
-- **Mission** — les précisions contractuelles, tâche par tâche.
+- **Introduction** : la présentation du projet
+- **Mission** : les précisions contractuelles, tâche par tâche
 
-:::warning Introduction et Mission sont critiques
-Ces deux champs ne servent pas qu'au devis : ils sont **repris tels quels dans le projet** lors de l'onboarding Sidekick. C'est le principe d'omniprésence de l'information — ce que tu écris ici, l'équipe de production le lira des semaines plus tard.
-
-Une Introduction vide, c'est un projet qui démarre sans contexte.
+:::warning Ces 2 champs partiront dans le projet
+Sidekick les recopie tels quels dans le projet lors de l'onboarding. Ce que tu écris ici, l'équipe de prod le lira dans 3 semaines. **Introduction vide = projet qui démarre à l'aveugle.**
 :::
 
-Le **Montant Net HT** et le PDF se remplissent automatiquement quand l'app génère le devis. Tu n'y touches pas.
-
-:::tip Les IDs techniques des colonnes
-Ils sont regroupés dans [Référence → Opportunités](../03-reference/boards-et-colonnes.md).
+:::danger Lie bien le Compte à l'opportunité
+Le bloc « Coordonnées d'entreprise » du PDF (adresse, téléphone) est tiré du **Compte lié à l'opportunité**, pas de celui du contact. Sans lui, le PDF part sans l'adresse du client.
 :::
 
-:::note Capture à ajouter
+Ne touche pas au **Montant Net HT** : l'app le réécrit en continu pendant que tu montes le devis.
 
-- `./img/oppo-board.png` — le board Opportunités, pipeline (groupes) visible
+![Le board Opportunités, les groupes du pipeline visibles](./img/oppo-board.png)
 
+## B. Monter le devis dans Devis Creator
+
+Ouvre l'onglet de l'app depuis l'item de l'opportunité : elle sélectionne l'opportunité toute seule.
+
+1. **Vérifie l'opportunité sélectionnée.** L'app n'affiche que les statuts de signature *Nouveau*, *Négociation* et *Envoi au clic*.
+2. **Édite l'Introduction.** Elle est enregistrée dans la colonne Introduction de l'opportunité.
+3. **Ajoute les produits** depuis le catalogue Services - BB®, groupés par catégorie.
+4. **Renseigne la Mission** service par service si besoin. Toutes les Missions sont recopiées (sans doublon) dans la colonne Mission de l'opportunité, et chacune apparaît dans sa ligne du PDF.
+
+![L'app Devis Creator ouverte depuis un item, écran de sélection](./img/devis-creator-app.png)
+
+![L'ajout de produits depuis le catalogue, groupés par catégorie](./img/devis-creator-produits.png)
+
+### Les réglages du devis
+
+| Réglage | Portée | À savoir |
+|---|---|---|
+| **Quantité** | par produit | Décimales et fractions acceptées (`1/2`) |
+| **Prix manuel** | par produit | ⚠️ Obligatoire sur les produits à 0 (budget pub, UX/UI, droits) |
+| **Rabais %** | par catégorie | De 0 à 100 |
+| **Durée contractuelle** | ⚠️ **globale, tout le devis** | Multiplie les produits en récurrence *mensuel*. 12 mois par défaut. |
+| **Devise** | globale | CHF, EUR, USD (taux du jour) |
+| **Budget publicitaire avancé** | globale | Change le calcul de l'acompte (voir plus bas) |
+| **Expiration** | globale | 30 jours par défaut |
+
+Tu peux aussi **réordonner les catégories** (flèches ↑↓) : le PDF respecte cet ordre.
+
+![Le bloc des réglages globaux, durée contractuelle, devise, budget publicitaire avancé et expiration](./img/devis-creator-reglages.png)
+
+:::warning Le prix manuel n'est pas converti
+Un prix saisi à la main est repris **tel quel**, sans conversion de devise. Si ton devis est en EUR, saisis-le directement en EUR.
 :::
 
-## Ouvrir l'app Devis Creator
+:::danger Ne modifie jamais le board Services - BB®
+C'est la source des prix, des heures et des sous-tâches de toute l'agence. Une modif se propage à **tous** les devis et **tous** les projets futurs.
 
-Depuis l'item de l'opportunité, ouvre l'onglet de l'app. Elle ne liste que les opportunités en statut Nouveau, Négociation ou Envoi au clic.
-
-1. **Sélectionne l'opportunité.**
-2. **Édite l'Introduction.** Le texte est sauvegardé automatiquement sur l'opportunité.
-3. **Ajoute les produits** depuis le catalogue Services - BB®, regroupés par catégorie.
-4. **Renseigne la Mission** ligne par ligne si des précisions contractuelles s'imposent.
-
-Pour chaque produit ajouté, tu peux régler la **quantité** (les décimales et fractions sont acceptées, par exemple `1/2`), la **durée contractuelle** qui multiplie les produits facturés au mois, la **devise** parmi CHF, EUR et USD au taux du jour, un **rabais par catégorie**, et un **prix manuel** pour les produits à 0 comme le budget publicitaire, l'UX/UI ou la libération de droits.
-
-:::note Captures à ajouter
-
-- `./img/devis-creator-app.png` — l'app Devis Creator ouverte depuis un item, écran de sélection
-- `./img/devis-creator-produits.png` — l'ajout de produits depuis le catalogue, regroupés par catégorie
-
+Un service n'apparaît pas dans la liste ? Il n'est pas en statut **active** dans le catalogue.
 :::
 
-:::danger Le catalogue Services - BB® est en lecture seule
-Ne modifie jamais le board [Services - BB®](https://agence-bb-ensemble.monday.com/boards/5095856027), ni depuis l'app ni ailleurs. C'est la source de vérité des prix, des heures et des sous-tâches. Une modification s'y propage à tous les devis futurs et à tous les onboardings.
+:::tip Tu peux partir et revenir
+Le devis est sauvegardé (produits, quantités, rabais, devise, durée…) et rechargé automatiquement à la réouverture. Le bouton **Sauvegarder** force l'enregistrement sans générer de PDF.
 :::
 
-## Comprendre les totaux
+## C. Sortir le PDF
 
-L'app calcule une cascade de totaux. La distinction entre **budget publicitaire** et **agence** est imposée : le budget pub n'est pas une prestation d'agence, il doit être isolé.
+Quatre boutons de langue : **FR / EN / DE / IT**. Un clic et l'app :
 
-Prenons un devis composé de 3 000.- de Création/Production, 5 000.- de Digital/Web avec 10 % de rabais catégorie, et 2 000.- de budget publicitaire :
+- rafraîchit les taux de change,
+- dépose le PDF dans la colonne « Devis Vibe » de l'opportunité,
+- écrit le **Montant Net HT**,
+- pose la **date d'expiration**.
+
+Le PDF contient le logo, les coordonnées client, un tableau par catégorie (*Nom du service · Description · Mission · Qté · Prix HT · Total HT*), les conditions spéciales, les totaux, le bloc signature et le lien vers les CGV.
+
+![Les quatre boutons FR / EN / DE / IT](./img/devis-creator-boutons-langues.png)
+
+![La colonne « Devis Vibe » de l’opportunité, avec le PDF déposé](./img/oppo-colonne-devis.png)
+
+:::note Les traductions viennent du catalogue
+Les noms, descriptions et conditions spéciales en EN / DE / IT sont lus dans les colonnes correspondantes de Services - BB®. Si elles sont vides là-bas, elles seront vides dans le PDF.
+:::
+
+## D. Envoyer & faire signer
+
+1. Passe le **Statut de signature** à « Envoi au clic (devis envoyé) ».
+2. Télécharge le PDF depuis la colonne Devis Vibe.
+3. Réimporte-le dans **DocuSign**, place les champs signature / nom / date à la main, envoie.
+
+Le document signé revient dans monday, le statut passe à **Signé**. Une relance part automatiquement tous les 3 jours.
+
+:::warning Le placement des champs DocuSign est manuel
+C'est une limite de DocuSign, pas un oubli de config. Tu devras le refaire à chaque envoi.
+:::
+
+## Avant de cliquer « envoyer »
+
+- [ ] Le **Compte** est lié à l'opportunité (sinon adresse vide dans le PDF)
+- [ ] **Introduction** rédigée (elle part dans le projet)
+- [ ] **Prix manuel** saisi sur chaque produit à 0, sinon la ligne part à zéro chez le client
+- [ ] **Durée contractuelle** correcte : elle s'applique à *tout* le devis, pas produit par produit
+- [ ] **Devise** correcte, et prix manuels saisis dans cette devise
+- [ ] **Budget publicitaire avancé** coché ou décoché selon l'accord, ça change l'acompte
+- [ ] PDF dans la bonne langue, présent sur l'opportunité
+
+## Les totaux et l'acompte
+
+![La cascade des totaux : HT, rabais, budget pub, agence, TVA, TTC, acompte](./img/devis-creator-totaux.png)
+
+:::danger L'acompte, c'est 30 % du HT, jamais du TTC
+:::
+
+| Cas | L'acompte porte sur |
+|---|---|
+| Pas de budget publicitaire | **Total net global** |
+| Budget pub **avancé par l'agence** (par défaut) | **Total net global** |
+| Budget pub **non avancé** | **Total net agence** seulement (les honoraires) |
+
+<details>
+<summary>Le détail des totaux, avec un exemple chiffré</summary>
+
+Le budget publicitaire est isolé du reste : ce n'est pas une prestation d'agence.
+
+Chaque ligne = **prix × quantité × durée contractuelle** (la durée ne s'applique qu'aux produits en récurrence *mensuel*). Le rabais s'applique ensuite par catégorie.
+
+Exemple : 3 000.- de Création + 5 000.- de Digital (rabais 10 %) + 2 000.- de budget pub.
 
 | Ligne | Montant |
 |---|---|
 | Total HT | 10 000.00 |
-| Rabais (10 % sur Digital/Web) | − 500.00 |
-| Total net agence | 7 500.00 |
+| Total des rabais | − 500.00 |
 | Total net budget publicitaire | 2 000.00 |
+| Total net agence | 7 500.00 |
 | **Total net global** | **9 500.00** |
 | TVA 8.1 % | 769.50 |
-| **TTC** | **10 269.50** |
-| Acompte 30 % | 3 080.85 |
+| **Montant total TTC** | **10 269.50** |
+| Acompte 30 % HT, budget avancé | **2 850.00** |
+| Acompte 30 % HT, budget non avancé | 2 250.00 |
 
-:::note Capture à ajouter
+La ligne « Total des rabais » n'apparaît dans le PDF que s'il y a un rabais. La ligne « Total net budget publicitaire » n'apparaît que s'il y a un produit de cette catégorie.
 
-- `./img/devis-creator-totaux.png` — la cascade des totaux : HT, rabais, agence vs budget pub, TVA, TTC, acompte
+</details>
 
-:::
+<details>
+<summary>Les taux de change</summary>
 
-## Générer le PDF
+Les taux CHF → EUR / USD sont récupérés en direct sur une API publique, au chargement de l'app **et** au moment de générer le PDF.
 
-Quatre boutons de langue : français, anglais, allemand, italien. Un clic, et l'app dépose le PDF dans la colonne « Devis Vibe » de l'opportunité, y sauvegarde le Montant Net HT, et enregistre la date d'expiration du devis.
+Si l'API ne répond pas, l'app retombe sur des taux de secours (EUR 0.95, USD 1.08). Sur un devis en devise étrangère, vérifie les montants avant d'envoyer.
 
-Le PDF contient le logo, les coordonnées du client, les produits avec leurs descriptions courtes, les conditions spéciales, le bloc de signature, et les CGV (case « J'accepte les CGV », renvoyant vers `agence-bb.ch/cgv`).
-
-:::note Captures à ajouter
-
-- `./img/devis-creator-boutons-langues.png` — les quatre boutons FR / EN / DE / IT
-- `./img/oppo-colonne-devis.png` — la colonne « Devis Vibe » de l'opportunité, avec le PDF déposé
-
-:::
-
-## Envoyer & faire signer
-
-Passe d'abord le **Statut de signature** à « Envoi au clic (devis envoyé) ». Télécharge ensuite le PDF depuis la colonne Devis Vibe, réimporte-le dans **DocuSign**, place les champs signature, nom et date, puis envoie.
-
-Le document signé revient dans monday et le statut passe à **Signé**. Une relance automatique part tous les 3 jours jusqu'à signature.
-
-:::warning Limite DocuSign connue
-Le placement des champs et les parapheurs page à page ne sont pas automatisés. Tu dois les positionner à la main à chaque envoi. C'est une limite de DocuSign, pas un oubli de configuration.
-:::
-
-:::note Capture à ajouter
-
-- `./img/docusign-flow.png` — l'écran DocuSign avec les champs signature / nom / date placés
-
-:::
-
-## Checklist
-
-- [ ] Introduction rédigée — elle partira dans le projet
-- [ ] Mission renseignée sur les lignes qui le nécessitent
-- [ ] Durée contractuelle réglée pour tous les produits mensuels
-- [ ] Prix manuel saisi pour chaque produit à 0
-- [ ] Devise correcte
-- [ ] PDF généré dans la bonne langue et présent sur l'opportunité
-- [ ] Statut de signature mis à jour après envoi
-
-## Erreurs fréquentes
-
-**Introduction ou Mission vides.** Elles sont perdues au moment de l'onboarding projet, et l'équipe démarre à l'aveugle.
-
-**Produit à 0 sans prix manuel.** La ligne part facturée à zéro dans le PDF envoyé au client.
-
-**Oubli de la durée contractuelle** sur un produit mensuel : le devis sous-facture.
-
-**Mauvaise devise.** Les totaux sont faux et le taux du jour ne s'applique pas.
+</details>
 
 ---
 
-**Étape suivante :** le devis est signé → [Onboarder le projet via Sidekick](../02-work-management/onboarding-projet-sidekick.md).
+**Devis signé ? →** [Monter le projet avec Sidekick](../02-work-management/onboarding-projet-sidekick.md)

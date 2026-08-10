@@ -2,91 +2,57 @@
 sidebar_position: 2
 ---
 
-# Ajouter & qualifier une piste
+# 1. Ajouter une piste
 
-Une piste, c'est le point d'entrée de tout le CRM. Cette page explique d'où elles viennent, comment les saisir et comment on les qualifie.
+## Si le lead vient du site ou du chatbot
 
-## D'où viennent les pistes
+**Tu n'as rien à faire.** La ligne se crée toute seule et une notif part dans Slack.
 
-Toutes les pistes atterrissent dans le board [Prospects / Pistes](https://agence-bb-ensemble.monday.com/boards/5093138638), quelle que soit leur provenance. Sept canaux sont possibles : le site web, le téléphone, Sortlist, la newsletter, les deux boîtes e-mail génériques (impact et Influence Switzerland), et la saisie manuelle. La colonne « Origine de la piste » enregistre lequel.
+## Si le lead vient du téléphone ou d'ailleurs
 
-## Entrée automatique via le site
+1. Ouvre [Prospects / Pistes](https://agence-bb-ensemble.monday.com/boards/5093138638).
+2. Groupe **« Prospects en cours de traitement »**.
+3. Clique **+ Ajouter**.
+4. Remplis ces 5 champs :
 
-Le formulaire maison et le chatbot BiBi, développés en interne par Charles et connectés à l'API monday, créent la ligne tout seuls : les colonnes sont mappées, l'origine est renseignée, et une notification part dans Slack. Tu n'as rien à faire.
+| Champ | Pourquoi |
+|---|---|
+| **E-mail** | ⚠️ Sans lui, la conversion et Brevo sont bloqués |
+| **Origine de la piste** | Pour savoir quel canal rapporte |
+| **Unité d'affaires** + **Principal intérêt** | Pour l'orientation |
+| **Budget potentiel** | Pour le scoring |
+| **Langue** | Pour le devis |
 
-:::note
-Typeform a été abandonné au profit du formulaire maison. Si tu croises encore des références à Typeform, elles sont obsolètes.
-:::
+Le reste (secteur, type de contact, raison sociale) se remplit plus tard, au fil des échanges.
 
-## Entrée manuelle
+![Le board Prospects / Pistes, groupe « Prospects en cours de traitement » visible](./img/piste-board.png)
 
-Quand un lead arrive par téléphone ou par un canal non automatisé :
+![Le formulaire d’ajout d’une piste, colonnes principales visibles](./img/piste-nouvelle.png)
 
-1. Ouvre le board [Prospects / Pistes](https://agence-bb-ensemble.monday.com/boards/5093138638).
-2. Place-toi dans le groupe « Prospects en cours de traitement ».
-3. Clique sur **+ Ajouter**.
+## Faire avancer le statut
 
-Renseigne au minimum :
+Une piste suit toujours ce chemin :
 
-- **l'e-mail** — sans lui, la conversion en Contact et la synchro Brevo sont bloquées,
-- **l'origine de la piste**,
-- **l'unité d'affaires** et **le principal intérêt**,
-- **le budget potentiel** et **la langue**.
+**Entrée non traitée** → **Tentative de contact** (tu as essayé de la joindre) → **Contacté** (elle a répondu) → **Qualifié** ou **Non qualifié**.
 
-Les autres champs (secteur d'activité, type de contact, raison sociale) se complètent au fil des échanges.
+C'est tout. N'invente pas d'autres statuts.
 
-:::tip Les IDs techniques des colonnes
-Ils sont regroupés dans [Référence → Prospects / Pistes](../03-reference/boards-et-colonnes.md#prospects--pistes--5093138638), avec la liste complète des valeurs possibles.
-:::
+Le **score** (par tranches de 20 %), c'est Amancio qui le met, et il le fait évoluer après chaque échange.
 
-:::note Captures à ajouter
+## Ce qui part tout seul
 
-- `./img/piste-board.png` — le board Prospects / Pistes, groupe « Prospects en cours de traitement » visible
-- `./img/piste-nouvelle.png` — le formulaire d'ajout d'une piste, colonnes principales visibles
+- Un e-mail de confirmation au prospect.
+- Si opt-in newsletter coché : synchro vers **Brevo** (liste 11) via n8n.
 
-:::
+## Les 4 erreurs à ne pas faire
 
-## Qualifier la piste
-
-Amancio analyse chaque piste — profil LinkedIn, crédibilité de la demande, pertinence par rapport à nos offres — et lui attribue un score par tranches de 20 %. Ce score évolue après chaque interaction avec le prospect.
-
-La colonne « Statut » suit un cycle simple. Une piste arrive en **Entrée non traitée**, passe en **Tentative de contact** dès qu'on essaie de la joindre, puis en **Contacté** quand le prospect répond. À l'issue de la qualification, elle devient **Qualifié** — et poursuit vers l'opportunité — ou **Non qualifié**, et on s'arrête là.
-
-:::tip
-Ne multiplie pas les statuts. Ce cycle couvre tous les cas réels : si tu hésites entre deux, c'est probablement que la piste n'a pas encore été travaillée.
-:::
-
-:::note Capture à ajouter
-
-- `./img/piste-score.png` — les colonnes Score et Statut d'une piste qualifiée
-
-:::
-
-## Ce qui part automatiquement
-
-Un e-mail de confirmation de réception est envoyé au prospect.
-
-Si celui-ci a coché l'opt-in Newsletter, son contact est synchronisé vers **Brevo** (liste 11) via l'intégration **n8n**.
-
-## Checklist
-
-- [ ] E-mail renseigné et valide
-- [ ] Origine de la piste sélectionnée
-- [ ] Unité d'affaires et principal intérêt renseignés
-- [ ] Budget potentiel renseigné, pas laissé sur « A clarifier » si l'info existe
-- [ ] Langue du prospect définie
-- [ ] Statut positionné
-
-## Erreurs fréquentes
-
-**E-mail manquant ou malformé.** C'est de loin la plus coûteuse : elle bloque la conversion en Contact et la synchro Brevo. Vérifie-le avant de valider.
-
-**Doublon de piste.** Deux contacts finissent créés et l'historique du prospect se retrouve éclaté sur deux lignes.
-
-**Budget laissé sur « A clarifier »** alors que l'information est connue. Le scoring est faussé et la priorisation devient impossible.
-
-**Origine non renseignée.** On perd la capacité de mesurer quel canal rapporte.
+| Erreur | Conséquence |
+|---|---|
+| **E-mail manquant ou faux** | La conversion est bloquée. La pire de toutes. |
+| **Créer un doublon** | L'historique du prospect est éclaté sur 2 lignes |
+| **Laisser « A clarifier »** alors que tu connais le budget | Le scoring est faussé |
+| **Oublier l'origine** | On ne sait plus quel canal rapporte |
 
 ---
 
-**Étape suivante :** [Convertir la piste en Contact + Compte](./convertir-contact-compte.md).
+**Suite →** [Convertir la piste](./convertir-contact-compte.md)

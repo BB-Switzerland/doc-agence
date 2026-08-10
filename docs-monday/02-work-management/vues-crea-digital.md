@@ -2,35 +2,31 @@
 sidebar_position: 4
 ---
 
-# Vues « Mes tâches » & pilotage manager
+# Retrouver ses tâches
 
-Tous les projets vivent dans un seul board. Alors comment chacun retrouve ses tâches ? Par des **vues filtrées**, pas par des boards séparés.
+Tous les projets sont dans un seul board. Tu retrouves les tiens par les **vues**.
 
-## Les vues disponibles
+## La vue à ouvrir chaque matin
 
-**Mes tâches Créa** et **Mes tâches Digital** croisent le filtre « assigné à moi » avec les équipes du pôle. Ce sont celles que tu ouvriras au quotidien.
+**« Mes tâches Créa »** ou **« Mes tâches Digital »** : assigné à moi + les équipes de ton pôle.
 
-À côté, quatre vues transverses : **Workload** pour la charge de travail par personne, **Heures prestées** pour le time tracking consolidé, **Gantt** pour le planning du projet, et la **Vue principale** qui montre tout le board.
+## Les autres vues
 
-:::note Captures à ajouter
+| Vue | Pour quoi |
+|---|---|
+| **Workload** | La charge de travail par personne |
+| **Heures prestées** | Le time tracking consolidé |
+| **Gantt** | Le planning du projet |
+| **Vue principale** | Tout le board |
 
-- `./img/vue-mes-taches-crea.png` — la vue « Mes tâches Créa » filtrée
-- `./img/vue-workload.png` — la vue Workload d'une équipe
+![La vue « Mes tâches Créa » filtrée](./img/vue-mes-taches-crea.png)
 
-:::
+## Pourquoi tu vois (ou pas) une tâche
 
-## Assignation par équipe
+C'est la colonne **« Équipes »** qui pilote les filtres. Tu ne la remplis pas : elle vient du catalogue Services - BB® et Sidekick l'injecte à l'onboarding.
 
-L'information « Équipes » ne se saisit pas à la main sur le projet. Elle vient du CRM — du catalogue Services - BB® — et Sidekick l'injecte au moment de l'onboarding. C'est elle qui pilote les filtres des vues.
-
-:::info Un service, plusieurs équipes
-Un même service peut appartenir à plusieurs équipes, par exemple un shooting qui mobilise la Créa et la Photo. Il apparaîtra alors dans plusieurs vues « Mes tâches » — c'est voulu.
-:::
-
-## Vue manager
-
-Le responsable de pôle dispose d'une lecture transverse : la charge de travail de son équipe, les retards sur les tâches en cours, et l'avancement global des projets.
+Un service peut appartenir à plusieurs équipes (un shooting mobilise Créa + Photo) : il apparaîtra dans plusieurs vues. C'est voulu.
 
 :::info monday n'assigne personne à ta place
-Il n'existe pas d'assignation automatique « au meilleur disponible ». Sidekick assigne à l'équipe, puis le responsable répartit nominativement. Il garde la main, et c'est délibéré.
+Sidekick assigne à l'**équipe**. C'est ensuite le responsable de pôle qui répartit nominativement. Pas d'assignation automatique « au meilleur disponible ».
 :::

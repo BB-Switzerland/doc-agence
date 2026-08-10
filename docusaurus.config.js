@@ -39,6 +39,12 @@ const config = {
     locales: ["fr"],
   },
 
+  // Active les schémas Mermaid dans les fichiers Markdown (```mermaid)
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
+
   presets: [
     [
       "classic",

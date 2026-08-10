@@ -81,10 +81,21 @@ export default function LoginPage() {
           if (!cancelled) setError(e?.message || String(e));
         }
 
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
           if (cancelled) return;
           console.log("[login] onAuthStateChanged:", user ? user.email : null);
           if (user) {
+            // Pose le jeton AVANT de rediriger : c'est lui que le middleware
+            // vérifie. Sans ça, la page de destination renvoie sur /login.
+            try {
+              const token = await user.getIdToken();
+              document.cookie = `bb_token=${token}; Path=/; Max-Age=3600; SameSite=Lax`;
+              document.cookie = `bb_auth=1; Path=/; Max-Age=${60 * 60 * 8}; SameSite=Lax`;
+            } catch (e) {
+              console.error("[login] impossible de poser le jeton", e);
+              setError("Connexion impossible, réessaie.");
+              return;
+            }
             const returnUrl = sessionStorage.getItem("returnUrl");
             // Nettoie la valeur et redirige
             try {

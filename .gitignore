@@ -21,3 +21,5 @@ yarn-debug.log*
 yarn-error.log*
 
 CAHIER-DES-CHARGES-doc-monday.md
+# Mémoire de l'agent Claude (local)
+memory/

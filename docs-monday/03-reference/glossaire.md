@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Glossaire
 
-Terminologie utilisée dans le CRM et le Work Management.
+Page à consulter au besoin, pas à lire.
 
 ---
 
@@ -40,7 +40,7 @@ Base de la formule **Heures = Prix HT ÷ taux**. Définie par Amancio.
 
 ## Statuts
 
-### Pipeline — Opportunités (`deal_stage`)
+### Pipeline des Opportunités (`deal_stage`)
 
 Nouveau · Découverte · Proposition · Négociation · Conclu · Perdu · En stand-by
 

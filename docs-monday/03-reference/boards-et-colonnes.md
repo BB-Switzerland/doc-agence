@@ -2,12 +2,12 @@
 sidebar_position: 1
 ---
 
-# IDs des boards & mapping des colonnes
+# IDs des boards & colonnes
 
-Page de **maintenance**. Elle sert à ceux qui touchent au prompt Sidekick, aux automatisations ou à l'API monday.
+:::info Tu n'as pas besoin de cette page
+C'est de la **maintenance technique**. Utile seulement si tu touches au prompt Sidekick, aux automatisations ou à l'API monday.
 
-:::note
-Si tu modifies une colonne dans monday, mets à jour cette page **et** [le prompt Sidekick](./prompt-sidekick.md) — les IDs y sont encodés en dur.
+Et si tu modifies une colonne dans monday : mets à jour cette page **et** [le prompt Sidekick](./prompt-sidekick.md), où les IDs sont en dur.
 :::
 
 ---
@@ -16,24 +16,24 @@ Si tu modifies une colonne dans monday, mets à jour cette page **et** [le promp
 
 | Board | ID | Workspace | Board des sous-éléments |
 |---|---|---|---|
-| Prospects / Pistes | `5093138638` | CRM - BB® | — |
-| Contacts | `5093138641` | CRM - BB® | — |
+| Prospects / Pistes | `5093138638` | CRM - BB® | aucun |
+| Contacts | `5093138641` | CRM - BB® | aucun |
 | Comptes | `5093138643` | CRM - BB® | `5097045857` |
 | Opportunités | `5093138639` | CRM - BB® | `5093138646` (vide) |
 | **Services - BB®** | `5095856027` | CRM - BB® | `5097425516` |
-| Activités CRM | `5093138642` | CRM - BB® | — |
+| Activités CRM | `5093138642` | CRM - BB® | aucun |
 | **Projets** (WM) | `5097430798` | Tryve | `5097430830` |
 | Project Plan | `5095065143` | Tryve | `5095065148` (vide) |
 
 ---
 
-## Prospects / Pistes — `5093138638`
+## Prospects / Pistes · `5093138638`
 
 | Colonne | ID | Valeurs |
 |---|---|---|
 | Prénom | `text_mm32bj3a` | texte |
 | Nom | `text_mm32yg4k` | texte |
-| E-mail | `lead_email` | e-mail — obligatoire pour la conversion |
+| E-mail | `lead_email` | e-mail, obligatoire pour la conversion |
 | Origine de la piste | `color_mm33kjd6` | Téléphone · Site Web · Sortlist · Newsletter · E-mail général (impact) · Email général (IS) · Manuelle |
 | Principal intérêt | `color_mm329m9y` | Photos & Videos · Graphisme & Design · Digital & Web · Stratégie marketing · Fournisseur/Partenaire |
 | Unité d'affaires | `color_mm3cfjxt` | BB® Switzerland · BB® Studio · MPO · Influence Switzerland |
@@ -48,7 +48,7 @@ Si tu modifies une colonne dans monday, mets à jour cette page **et** [le promp
 
 ---
 
-## Contacts — `5093138641`
+## Contacts · `5093138641`
 
 | Colonne | ID |
 |---|---|
@@ -60,7 +60,7 @@ Si tu modifies une colonne dans monday, mets à jour cette page **et** [le promp
 
 ---
 
-## Opportunités — `5093138639`
+## Opportunités · `5093138639`
 
 | Colonne | ID |
 |---|---|
@@ -78,7 +78,7 @@ Si tu modifies une colonne dans monday, mets à jour cette page **et** [le promp
 
 ---
 
-## Services - BB® — `5095856027` (lecture seule)
+## Services - BB® · `5095856027` (lecture seule)
 
 :::danger
 Ce board est la **source de vérité** des prix, des heures et des sous-tâches de toute l'agence. **Aucune écriture**, ni manuelle, ni par Sidekick, ni par l'app Devis Creator.
@@ -102,7 +102,7 @@ Ce board est la **source de vérité** des prix, des heures et des sous-tâches 
 
 ---
 
-## Projets — `5097430798`
+## Projets · `5097430798`
 
 | Colonne | ID |
 |---|---|
@@ -135,7 +135,7 @@ Ce board est la **source de vérité** des prix, des heures et des sous-tâches 
 | Type de Livrable | `dropdown_mm45khda` | Photo · Vidéo · Motion Design · Graphisme 2D |
 
 :::note
-Les statuts métier **Digital** ne sont pas encore figés — à définir avec Emmanuel.
+Les statuts métier **Digital** ne sont pas encore figés, à définir avec Emmanuel.
 :::
 
 ---

@@ -12,11 +12,25 @@ function log(...args) {
 // ------------------------------
 // Config des routes protégées
 // ------------------------------
+// Chemins réservés aux rôles privilégiés (admin, collaborateur)
 const privatePaths = [
   "/digital/tracking",  // Protection de toute la section tracking
 ];
 function isPrivatePath(pathname) {
   return privatePaths.some((p) => pathname.startsWith(p));
+}
+
+// Chemins qui exigent seulement d'être connecté : le rôle n'entre pas en jeu.
+// Nécessaire car Docusaurus est une SPA : une navigation interne ne déclenche
+// aucune requête serveur, donc middleware.js ne s'exécute pas.
+// À garder cohérent avec PRIVATE_PREFIXES dans middleware.js.
+const loginRequiredPaths = [
+  "/digital",
+  "/onboarding",
+  "/monday",
+];
+function isLoginRequiredPath(pathname) {
+  return loginRequiredPaths.some((p) => pathname.startsWith(p));
 }
 
 // ------------------------------
@@ -40,6 +54,7 @@ function isAllowedDomain(user) {
   const {
     getAuth,
     onAuthStateChanged,
+    onIdTokenChanged,
     GoogleAuthProvider,
     signOut,
   } = await dynamicImport(
@@ -96,6 +111,19 @@ function isAllowedDomain(user) {
     window.addEventListener("bb:routechange", handler);
   }
 
+  // Dépose le jeton Firebase dans un cookie. C'est lui que le serveur vérifie.
+  async function setTokenCookie(user) {
+    try {
+      const token = await user.getIdToken();
+      // Le jeton vit 1h ; onIdTokenChanged le renouvelle et rafraîchit le cookie.
+      document.cookie = `bb_token=${token}; Path=/; Max-Age=3600; SameSite=Lax`;
+      return true;
+    } catch (e) {
+      console.error("[auth] setTokenCookie failed", e);
+      return false;
+    }
+  }
+
   async function redirectToLogin() {
     try {
       const returnUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
@@ -138,7 +166,8 @@ function isAllowedDomain(user) {
 
     // 🧩 Correction : afficher le body si non connecté sur page publique ou login
     if (!user) {
-      if (pathname === "/login" || !isPrivatePath(pathname)) {
+      if (pathname === "/login") return;
+      if (!isPrivatePath(pathname) && !isLoginRequiredPath(pathname)) {
         return;
       }
       await redirectToLogin();
@@ -177,6 +206,13 @@ function isAllowedDomain(user) {
       allowed = !isPrivatePath(pathname);
     }
 
+    // Connexion suffisante : sur ces chemins le rôle n'est pas pris en compte,
+    // n'importe quel compte @agence-bb.ch passe. La condition sur isPrivatePath
+    // garantit qu'ajouter "/digital" ici n'ouvrirait jamais /digital/tracking.
+    if (isLoginRequiredPath(pathname) && !isPrivatePath(pathname)) {
+      allowed = true;
+    }
+
     if (!allowed) {
       log(`Access denied for ${user.email} (${role})`);
       window.location.assign("/access-denied");
@@ -184,8 +220,11 @@ function isAllowedDomain(user) {
     }
 
     // ------------------------------
-    // Cookie session (optionnel)
+    // Cookie session
     // ------------------------------
+    // bb_token est le seul cookie qui fait autorité : middleware.js en vérifie
+    // la signature Google. bb_auth et bb_role ne servent qu'à l'affichage.
+    await setTokenCookie(user);
     try {
       const maxAge = 60 * 60 * 8; // 8h
       document.cookie = `bb_auth=1; Path=/; Max-Age=${maxAge}; SameSite=Lax`;
@@ -212,6 +251,11 @@ function isAllowedDomain(user) {
     await checkAndHandleAccess(path);
   });
 
+  // Firebase renouvelle le jeton toutes les heures : on garde le cookie à jour.
+  onIdTokenChanged(auth, async (user) => {
+    if (user) await setTokenCookie(user);
+  });
+
   onRouteChange((path) => {
     log("Route change:", path);
     checkAndHandleAccess(path);
@@ -223,6 +267,7 @@ function isAllowedDomain(user) {
   window.logout = () => {
     log("logout() called");
     try {
+      document.cookie = "bb_token=; Path=/; Max-Age=0; SameSite=Lax";
       document.cookie = "bb_auth=; Path=/; Max-Age=0; SameSite=Lax";
       document.cookie = "bb_email=; Path=/; Max-Age=0; SameSite=Lax";
       document.cookie = "bb_role=; Path=/; Max-Age=0; SameSite=Lax";

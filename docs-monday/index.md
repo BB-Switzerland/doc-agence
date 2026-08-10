@@ -1,59 +1,63 @@
 ---
 sidebar_position: 1
-title: Monday — CRM & Work Management
-description: Le parcours complet de la piste au projet livré sur monday.com
+title: "Monday : CRM & Work Management"
+description: De la piste au projet livré, en 6 étapes
 ---
 
 # Monday chez BB® Switzerland
 
-monday.com **remplace Salesforce**. Le compte `agence-bb-ensemble.monday.com` centralise désormais le **CRM** (pistes, contacts, comptes, opportunités, devis) et le **Work Management** (projets, tâches, heures, rentabilité).
+**monday.com remplace Salesforce.** Tout est sur `agence-bb-ensemble.monday.com` : les clients (CRM) et les projets (Work Management).
 
-Cette rubrique documente les **3 processus** que tu exécutes au quotidien :
+## Le parcours
 
-1. **Ajouter & qualifier une piste** — elle entre dans le CRM, tu la scores.
-2. **Créer l'opportunité & générer le devis** avec l'app **Devis Creator**.
-3. **Onboarder le projet** dans le Work Management depuis le devis signé, via **Sidekick**.
+```mermaid
+flowchart TD
+    A["1 · Piste"]
+    B{"Qualifiée ?"}
+    X["Abandon"]
+    C["2 · Contact + Compte"]
+    D["3 · Opportunité"]
+    E["4 · Devis PDF"]
+    F["5 · Signature"]
+    G["6 · Projet"]
 
----
+    A --> B
+    B -- non --> X
+    B -- oui --> C
+    C --> D
+    D -- Devis Creator --> E
+    E -- DocuSign --> F
+    F -- Sidekick --> G
 
-## Le flux global
+    classDef etape fill:#487CBC,stroke:#487CBC,color:#ffffff
+    classDef choix fill:#1E1F21,stroke:#1E1F21,color:#ffffff
+    classDef abandon fill:#9ca3af,stroke:#9ca3af,color:#1E1F21
+    classDef final fill:#DADD64,stroke:#DADD64,color:#1E1F21
+    class A,C,D,E,F etape
+    class B choix
+    class X abandon
+    class G final
+```
 
-| # | Étape | Ce qui se passe |
-|---|---|---|
-| 1 | **Piste / Prospect** | Un lead arrive (site, téléphone, Sortlist, newsletter…) et atterrit dans **Prospects / Pistes**. |
-| 2 | **Contact + Compte** | Une fois qualifiée, la piste est **convertie** — jamais ressaisie à la main. |
-| 3 | **Opportunité (Deal)** | Le deal est créé, avec son **Introduction** et sa **Mission**. |
-| 4 | **Devis** | L'app **Devis Creator** assemble les services du catalogue et produit le PDF. |
-| 5 | **Signature** | DocuSign. Le statut passe à **Signé**. |
-| 6 | **Projet** | **Sidekick** lit le PDF et crée le groupe, les items et les sous-items dans **Projets**. |
+Une fois le projet créé, il porte ses heures, ses statuts et sa rentabilité.
 
-Le projet ainsi créé porte sa structure de travail — groupe pour l'offre, élément pour chaque service, sous-élément pour chaque tâche — ainsi que les heures prévues, le time tracking et le calcul de rentabilité.
+## Où aller
 
----
+| Tu veux… | Va ici |
+|---|---|
+| Entrer un lead, faire un devis | **[CRM](./01-crm/index.md)** |
+| Monter un projet, suivre tes heures | **[Work Management](./02-work-management/index.md)** |
+| Un ID de colonne, le prompt Sidekick | **[Référence](./03-reference/boards-et-colonnes.md)** |
 
-## Les 3 guides
-
-- **[CRM — Pistes, Contacts, Opportunités](./01-crm/index.md)** — de l'entrée du lead au devis signé.
-- **[Work Management — Onboarding & Projets](./02-work-management/index.md)** — du devis signé au projet livré.
-- **[Référence technique](./03-reference/boards-et-colonnes.md)** — IDs des boards, colonnes, prompt Sidekick, glossaire.
-
----
-
-:::info Pourquoi c'est fait comme ça
-Notre licence monday est une **Pro** : maximum **5 workflows actifs**, maximum **20 tableaux connectés**, et pas d'accès aux Portfolios (réservés à l'Enterprise).
-
-Ces limites expliquent deux choix structurants :
-
-- **Un seul board central « Projets »** avec des **vues filtrées** par équipe, plutôt qu'un board par client.
-- Un onboarding **semi-automatique via Sidekick** (quelques minutes par projet) plutôt qu'une automatisation lourde — on ne traite que **3 à 6 projets par mois**.
+:::warning L'ancien process est mort
+Salesforce → macro Excel → import Monday : **ne l'utilise plus**. Tout passe par [Sidekick](./02-work-management/onboarding-projet-sidekick.md).
 :::
 
-:::warning L'ancien process n'est plus d'actualité
-Le flux **Salesforce → macro Excel → import Monday** décrit dans l'ancienne page d'onboarding est **obsolète**. Réfère-toi désormais à [Onboarder un projet depuis un devis](./02-work-management/onboarding-projet-sidekick.md).
-:::
+<details>
+<summary>Pourquoi un seul board pour tous les projets ?</summary>
 
-:::note Capture à ajouter
+Notre licence monday est une **Pro** : 5 workflows actifs et 20 tableaux connectés maximum. Un board par client serait ingérable.
 
-- `./img/flux-global.png` — schéma du parcours Piste → Contact → Opportunité → Devis → Signature → Projet
+Et comme on traite 3 à 6 projets par mois, l'onboarding semi-automatique via Sidekick (quelques minutes) coûte moins cher qu'une automatisation lourde.
 
-:::
+</details>
