@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Work Management : comment ça marche
+# Comment les projets sont organisés
 
 **Tout se passe dans un seul board :** [Projets](https://agence-bb-ensemble.monday.com/boards/5097430798) (workspace Tryve). Tous les clients, tous les projets. Chacun retrouve ses tâches via des **vues filtrées**.
 
@@ -26,11 +26,10 @@ Concrètement :
 
 ![Un groupe déplié, avec un item lui-même déplié montrant ses sous-items](./img/projets-structure.png)
 
-## Les 3 guides
+## Les 2 guides
 
-1. **[Monter un projet depuis un devis (Sidekick)](./onboarding-projet-sidekick.md)** : la page principale
-2. **[Piloter un projet](./executer-projet.md)** : statuts, heures, rentabilité
-3. **[Retrouver ses tâches](./vues-crea-digital.md)** : les vues Créa & Digital
+1. **[Onboarder un projet](./onboarder-un-projet.md)** : transformer un devis signé en projet.
+2. **[Gérer mes tâches](./gerer-mes-taches.md)** : ton quotidien, statuts, heures, rentabilité.
 
 <details>
 <summary>Pourquoi un seul board et pas un board par client ?</summary>

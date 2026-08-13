@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Monter un projet depuis un devis
+# Onboarder un projet
 
 Le devis est signé ? **Sidekick** (l'IA de monday) monte le projet tout seul à partir du PDF. Ça prend quelques minutes.
 
@@ -72,4 +72,4 @@ Décision du Workshop #4. L'essentiel de l'info est dans le PDF, pas dans des co
 
 ---
 
-**Suite →** [Piloter le projet](./executer-projet.md)
+**Suite →** [Gérer mes tâches](./gerer-mes-taches.md)

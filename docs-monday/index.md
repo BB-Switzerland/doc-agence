@@ -50,7 +50,7 @@ Une fois le projet créé, il porte ses heures, ses statuts et sa rentabilité.
 | Un ID de colonne, le prompt Sidekick | **[Référence](./03-reference/boards-et-colonnes.md)** |
 
 :::warning L'ancien process est mort
-Salesforce → macro Excel → import Monday : **ne l'utilise plus**. Tout passe par [Sidekick](./02-work-management/onboarding-projet-sidekick.md).
+Salesforce → macro Excel → import Monday : **ne l'utilise plus**. Tout passe par [Sidekick](./02-work-management/onboarder-un-projet.md).
 :::
 
 <details>

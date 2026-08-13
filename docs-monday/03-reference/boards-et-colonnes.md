@@ -126,6 +126,13 @@ Ce board est la **source de vérité** des prix, des heures et des sous-tâches 
 | Phases créa | `color_mm44djn3` | Pré-production · Production · Post-Prod · Validation |
 | Prise de la Mission | `status` | Non récupérée · En cours de production · Terminée · Bloqué |
 | Time tracking | `duration_mm40b29d` | durée |
+| Responsable mission | à compléter | personne |
+| Timeline | à compléter | plage de dates, alimente le Workload |
+| Deadline | à compléter | date |
+
+:::note IDs manquants
+Les IDs de **Responsable mission**, **Timeline** et **Deadline** ne sont pas encore relevés. À compléter avant de les utiliser dans le prompt Sidekick ou une automatisation.
+:::
 
 ### Colonnes métier Créa
 

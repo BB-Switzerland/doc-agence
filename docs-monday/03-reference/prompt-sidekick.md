@@ -9,7 +9,7 @@ sidebar_position: 2
 2. Colle-le dans **Sidekick**.
 3. **Joins le PDF du devis signé.**
 
-La procédure complète : [Monter un projet depuis un devis](../02-work-management/onboarding-projet-sidekick.md).
+La procédure complète : [Onboarder un projet](../02-work-management/onboarder-un-projet.md).
 :::
 
 ---

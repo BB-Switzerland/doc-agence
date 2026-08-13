@@ -160,4 +160,4 @@ Si l'API ne répond pas, l'app retombe sur des taux de secours (EUR 0.95, USD 1.
 
 ---
 
-**Devis signé ? →** [Monter le projet avec Sidekick](../02-work-management/onboarding-projet-sidekick.md)
+**Devis signé ? →** [Onboarder le projet](../02-work-management/onboarder-un-projet.md)

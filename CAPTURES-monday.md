@@ -38,12 +38,12 @@ Pour ajouter une capture manquante :
 
 | Fichier | Page | Quoi cadrer |
 |---|---|---|
-| `projets-groupe-cree.png` | onboarding-projet-sidekick | Un groupe créé par Sidekick, ses items dans l'ordre du devis |
-| `projets-doc-introduction.png` | onboarding-projet-sidekick | Un monday Doc « Introduction » attaché à un item |
-| `projet-sous-tache-statut.png` | executer-projet | La colonne « Prise de la Mission » sur un sous-item |
-| `projet-rentabilite.png` | executer-projet | La colonne Rentabilité, si possible trois lignes montrant vert, orange et rouge |
-| `projet-gantt.png` | executer-projet | La vue Gantt d'un projet |
-| `vue-workload.png` | vues-crea-digital | La vue Workload d'une équipe |
+| `projets-groupe-cree.png` | onboarder-un-projet | Un groupe créé par Sidekick, ses items dans l'ordre du devis |
+| `projets-doc-introduction.png` | onboarder-un-projet | Un monday Doc « Introduction » attaché à un item |
+| `projet-sous-tache-statut.png` | gerer-mes-taches | La colonne « Prise de la Mission » sur un sous-item |
+| `projet-rentabilite.png` | gerer-mes-taches | La colonne Rentabilité, si possible trois lignes montrant vert, orange et rouge |
+| `projet-gantt.png` | gerer-mes-taches | La vue Gantt d'un projet |
+| `vue-workload.png` | gerer-mes-taches | La vue Workload d'une équipe |
 
 ---
 
