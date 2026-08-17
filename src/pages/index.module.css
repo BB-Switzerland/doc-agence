@@ -168,23 +168,9 @@
   opacity: 0.72;
 }
 
-/* Neutralise le lien du titre (qui couvre toute la carte) et ceux de la
-   liste, sans retirer le texte : la section reste lisible. */
-:global(body.no-privileged-access) .card[data-restricted="true"] .cardTitleLink,
-:global(body.no-privileged-access) .card[data-restricted="true"] .cardLink {
-  pointer-events: none;
-  cursor: default;
-}
-
-/* Pas d'effet de survol sur une carte qu'on ne peut pas ouvrir. */
-:global(body.no-privileged-access) .card[data-restricted="true"]:hover {
-  border-color: var(--bb-rule);
-  transform: none;
-}
-
-:global(body.no-privileged-access) .card[data-restricted="true"]:hover::before {
-  width: 2.5rem;
-}
+/* Les liens restent actifs : cliquer mène à /access-denied (ou /login) via
+   static/auth.js, qui explique comment obtenir l'accès. Une carte verrouillée
+   mais morte au clic serait une impasse. */
 
 .card {
   position: relative;

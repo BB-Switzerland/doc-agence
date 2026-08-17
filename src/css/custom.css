@@ -210,11 +210,24 @@ body.no-tracking-access li:has(.categoryLinkLabel_W154[title*="Tracking"]) {
  * La classe est posée sur le body par static/tracking-visibility.js.
  * Masquage visuel uniquement : le blocage réel est dans static/auth.js.
  * ------------------------------------------------------------------ */
+/* Ces entrées restent visibles ET cliquables : masquées, personne ne saurait
+   que ces sections existent. Le lien est conservé exprès — auth.js redirige
+   vers /access-denied (ou /login), ce qui explique comment demander l'accès.
+   Un cadenas signale simplement que la section est réservée. */
 body.no-privileged-access .navbar__item[href="/digital"],
 body.no-privileged-access .navbar__item[href="/monday"],
 body.no-privileged-access .menu__link[href="/digital"],
 body.no-privileged-access .menu__link[href="/monday"] {
-  display: none;
+  opacity: 0.72;
+}
+
+body.no-privileged-access .navbar__item[href="/digital"]::after,
+body.no-privileged-access .navbar__item[href="/monday"]::after,
+body.no-privileged-access .menu__link[href="/digital"]::after,
+body.no-privileged-access .menu__link[href="/monday"]::after {
+  content: "🔒";
+  margin-left: 0.4em;
+  font-size: 0.8em;
 }
 
 /* Les cartes de l'accueil pointant vers une section réservée ne sont PAS
