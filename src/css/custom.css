@@ -4,6 +4,12 @@
  * work well for content-centric websites.
  */
 
+/* Charte typographique de l'agence (cf. maquette Figma « BBS — DevMode »,
+   frame Vie d'Agence). La maquette utilise aussi DM Sans pour la navigation,
+   volontairement écarté ici : la doc reste en Roboto Flex seul.
+   Un @import doit précéder toute autre règle. */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap');
+
 /* Masque le contenu par défaut; `static/auth.js` l'affichera après vérification d'auth */
 
 /* You can override the default Infima variables here. */
@@ -96,12 +102,16 @@
   color: var(--ifm-color-primary) !important;
 }
 
-/* Roboto Flex en variable, axes opsz + wdth + wght.
-   L'axe de largeur (wdth) sert au contraste typographique de l'accueil. */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap');
-
+/* Contenu : Roboto Flex. La charte n'utilise jamais l'axe de largeur,
+   `wdth` reste à 100 partout — seul `wght` porte la hiérarchie. */
 body, h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, blockquote, code, pre, table, th, td {
   font-family: 'Roboto Flex', sans-serif !important;
+}
+
+/* `font-variation-settings` s'hérite : on le pose sur `body` uniquement.
+   Le répéter sur chaque balise réinitialiserait le `wght` des parents. */
+body {
+  font-variation-settings: "wdth" 100;
 }
 
 .my-grid {

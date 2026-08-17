@@ -4,8 +4,11 @@
  * Couleurs : celles que le Devis Creator utilise déjà pour catégoriser les
  * prestations. Une section de la doc = un pôle = une couleur.
  *
- * Typographie : Roboto Flex en variable. Le contraste de largeur (axe wdth)
- * porte la hiérarchie, titre très large contre étiquettes très condensées.
+ * Typographie : charte de l'agence, relevée sur la maquette Figma
+ * « BBS — DevMode » (frame Vie d'Agence). Roboto Flex partout.
+ * L'axe de largeur reste à 100 — la charte ne s'en sert pas, c'est `wght`
+ * seul qui porte la hiérarchie : Medium 500 pour les titres, Regular 400
+ * pour le corps, Black 900 pour les étiquettes.
  */
 
 .hero,
@@ -37,27 +40,33 @@
   padding: 0 var(--ifm-spacing-horizontal);
 }
 
+/* Étiquette : Black 900 / 14, comme les intitulés « Menu » du pied de page. */
 .eyebrow {
-  font-variation-settings: "wght" 700, "wdth" 62, "opsz" 12;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  font-variation-settings: "wght" 900, "wdth" 100, "opsz" 14;
+  font-size: 0.875rem;
+  line-height: 1.86;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--ifm-color-emphasis-600);
   margin: 0 0 1.25rem;
 }
 
+/* Titre de page : la charte est en Medium 500, on monte à SemiBold 600 —
+   le titre est seul sur un grand aplat, il a besoin d'un peu plus de corps. */
 .heroTitle {
-  font-variation-settings: "wght" 900, "wdth" 140, "opsz" 144;
-  font-size: clamp(2.75rem, 9vw, 6.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
+  font-variation-settings: "wght" 600, "wdth" 100, "opsz" 144;
+  font-size: clamp(2.5rem, 7vw, 4.625rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   margin: 0;
   color: var(--ifm-heading-color);
 }
 
+/* Corps : Regular 400 / 18, interligne 32. */
 .heroLead {
-  font-variation-settings: "wght" 380, "wdth" 100, "opsz" 18;
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-variation-settings: "wght" 400, "wdth" 100, "opsz" 18;
+  font-size: 1.125rem;
+  line-height: 2rem;
   color: var(--ifm-color-emphasis-700);
   max-width: 34ch;
   margin: 1.5rem 0 0;
@@ -171,11 +180,12 @@
   width: 4rem;
 }
 
+/* Titre de section : Medium 500, interligne 1.5 comme dans la maquette. */
 .cardTitle {
-  font-variation-settings: "wght" 800, "wdth" 118, "opsz" 32;
+  font-variation-settings: "wght" 500, "wdth" 100, "opsz" 32;
   font-size: 1.5rem;
-  letter-spacing: -0.015em;
-  line-height: 1.1;
+  letter-spacing: -0.005em;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -194,9 +204,10 @@
 
 .cardTagline {
   font-variation-settings: "wght" 400, "wdth" 100, "opsz" 16;
-  font-size: 0.9375rem;
+  font-size: 1rem;
+  line-height: 1.75;
   color: var(--ifm-color-emphasis-700);
-  margin: 0.625rem 0 1.5rem;
+  margin: 0.5rem 0 1.5rem;
 }
 
 /* Les listes s'alignent par le haut : les cartes n'ont pas le même nombre
@@ -244,14 +255,6 @@
 .cardLink:focus-visible::after {
   opacity: 1;
   transform: translateX(0);
-}
-
-/* Une largeur de 140 déborde sur petit écran : on resserre le titre. */
-@media (max-width: 640px) {
-  .heroTitle {
-    font-variation-settings: "wght" 900, "wdth" 105, "opsz" 96;
-    letter-spacing: -0.02em;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
