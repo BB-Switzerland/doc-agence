@@ -52,10 +52,19 @@
   function start() {
     updateTrackingVisibility();
 
-    // Observer les mutations du DOM pour réagir aux changements de sidebar,
-    // et pour reposer les classes que l'hydratation React vient d'effacer.
-    const observer = new MutationObserver(updateTrackingVisibility);
-    observer.observe(document.body, { childList: true, subtree: true });
+    // Deux observateurs distincts : les options d'un MutationObserver
+    // s'appliquent à tout le sous-arbre observé, or on veut surveiller
+    // l'attribut `class` du body seul, pas celui de chaque descendant.
+
+    // 1. Docusaurus (via react-helmet) réécrit `body.class` — il y pose par
+    //    exemple `navigation-with-keyboard` — ce qui efface nos classes.
+    //    C'est un changement d'attribut : `childList` ne le voit pas.
+    new MutationObserver(updateTrackingVisibility)
+      .observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    // 2. Rendus React successifs : sidebar, navigation SPA.
+    new MutationObserver(updateTrackingVisibility)
+      .observe(document.body, { childList: true, subtree: true });
   }
 
   // Ce script est injecté dans le <head> (voir `scripts` dans

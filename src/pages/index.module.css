@@ -135,6 +135,57 @@
   }
 }
 
+/* ------------------------------------------------- sections verrouillées */
+
+/* Sans accès privilégié, les cartes réservées restent affichées — sinon
+   personne ne sait que ces sections existent — mais en retrait et non
+   cliquables. Le blocage réel est côté serveur (middleware.js). */
+.cardLocked {
+  display: none;
+  margin: 1.25rem 0 0;
+  font-variation-settings: "wght" 700, "wdth" 100, "opsz" 12;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.cardLocked::before {
+  content: "🔒";
+  margin-right: 0.5rem;
+  /* l'emoji ne doit pas hériter des réglages typographiques du libellé */
+  font-variation-settings: normal;
+}
+
+:global(body.no-privileged-access) .card[data-restricted="true"] .cardLocked {
+  display: block;
+}
+
+/* Assez en retrait pour signaler le verrou, assez lisible pour que le
+   contenu de la section reste identifiable — c'est tout l'intérêt de
+   laisser la carte en place. */
+:global(body.no-privileged-access) .card[data-restricted="true"] {
+  opacity: 0.72;
+}
+
+/* Neutralise le lien du titre (qui couvre toute la carte) et ceux de la
+   liste, sans retirer le texte : la section reste lisible. */
+:global(body.no-privileged-access) .card[data-restricted="true"] .cardTitleLink,
+:global(body.no-privileged-access) .card[data-restricted="true"] .cardLink {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Pas d'effet de survol sur une carte qu'on ne peut pas ouvrir. */
+:global(body.no-privileged-access) .card[data-restricted="true"]:hover {
+  border-color: var(--bb-rule);
+  transform: none;
+}
+
+:global(body.no-privileged-access) .card[data-restricted="true"]:hover::before {
+  width: 2.5rem;
+}
+
 .card {
   position: relative;
   min-width: 0;

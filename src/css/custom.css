@@ -217,7 +217,7 @@ body.no-privileged-access .menu__link[href="/monday"] {
   display: none;
 }
 
-/* Cartes de l'accueil pointant vers une section réservée */
-body.no-privileged-access [data-restricted="true"] {
-  display: none;
-}
+/* Les cartes de l'accueil pointant vers une section réservée ne sont PAS
+   masquées : on les laisse visibles pour que chacun sache que la section
+   existe, mais dans un état verrouillé et non cliquable.
+   Voir `.card[data-restricted]` dans src/pages/index.module.css. */

@@ -72,6 +72,11 @@ function SectionCard({ section }) {
           </li>
         ))}
       </ul>
+      {/* Toujours rendu : c'est le CSS qui l'affiche selon le rôle, celui-ci
+          n'étant connu que côté client (voir static/tracking-visibility.js). */}
+      {section.restricted ? (
+        <p className={styles.cardLocked}>Accès réservé</p>
+      ) : null}
     </article>
   );
 }
