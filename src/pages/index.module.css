@@ -7,8 +7,8 @@
  * Typographie : charte de l'agence, relevée sur la maquette Figma
  * « BBS — DevMode » (frame Vie d'Agence). Roboto Flex partout.
  * L'axe de largeur reste à 100 — la charte ne s'en sert pas, c'est `wght`
- * seul qui porte la hiérarchie : Medium 500 pour les titres, Regular 400
- * pour le corps, Black 900 pour les étiquettes.
+ * seul qui porte la hiérarchie : SemiBold 600 pour le titre de page,
+ * Medium 500 pour les titres de section, Regular 400 pour le corps.
  */
 
 .hero,
@@ -38,17 +38,6 @@
   max-width: var(--ifm-container-width);
   margin: 0 auto;
   padding: 0 var(--ifm-spacing-horizontal);
-}
-
-/* Étiquette : Black 900 / 14, comme les intitulés « Menu » du pied de page. */
-.eyebrow {
-  font-variation-settings: "wght" 900, "wdth" 100, "opsz" 14;
-  font-size: 0.875rem;
-  line-height: 1.86;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: var(--ifm-color-emphasis-600);
-  margin: 0 0 1.25rem;
 }
 
 /* Titre de page : la charte est en Medium 500, on monte à SemiBold 600 —

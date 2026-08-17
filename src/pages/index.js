@@ -89,7 +89,6 @@ export default function Home() {
     >
       <header className={styles.hero}>
         <div className={styles.heroInner}>
-          <p className={styles.eyebrow}>BB® Switzerland</p>
           <h1 className={styles.heroTitle}>
             La doc
             <br />
