@@ -68,14 +68,17 @@ Un workflow s'en charge :
 
 Il recopie le nom (*Entreprise* + nom du sous-élément), le **responsable**, et **Team Local** depuis les *Equipes de l'élément parent*.
 
-:::danger Deux colonnes « Responsable mission », et elles divergent
-Tasks BBS en porte deux : un **miroir**, branché sur Projets, qui suit les modifications et accepte plusieurs personnes — et une colonne **locale**, copiée à la création, **limitée à une personne**, jamais resynchronisée.
+:::danger Le responsable est copié une seule fois
+Tasks BBS récupère le responsable au moment où la tâche est créée. Ensuite, il ne bouge plus jamais tout seul.
 
-C'est la **locale** qui regroupe les vues et filtre « Mes tâches ».
+Deux pièges qui en découlent :
 
-Cas réel : « KATANA DIGITAL - Maquettes site web » porte *Sylvain Varnet et Nicole Arhanchet Alonso* dans le miroir, *Sylvain Varnet* seul en local. Nicole ne voit pas la tâche dans sa vue.
+- tu **réassignes** la tâche dans Projets → Tasks BBS garde l'ancien nom ;
+- tu mets **deux personnes** sur le sous-élément → une seule arrive.
 
-**Tu ajoutes ou changes un responsable après coup ? Corrige aussi la colonne locale sur Tasks BBS.**
+Exemple : « KATANA DIGITAL - Maquettes site web » est portée par Sylvain **et** Nicole dans Projets, mais Tasks BBS n'affiche que Sylvain. Nicole ne voit pas la tâche dans « Mes tâches ».
+
+**Tu touches au responsable ? Corrige-le aussi sur Tasks BBS.** Deux colonnes y portent ce nom : celle à corriger est **celle que tu peux modifier** — l'autre vient de Projets et est en lecture seule.
 :::
 
 ### Les vues
@@ -100,7 +103,7 @@ Elle reste dans « Général », nulle part ailleurs. Cause : l'élément parent
 - [ ] **« Mes tâches » n'exclut pas les tâches terminées.** Ajouter une règle *Prise de la Mission ≠ Terminée*.
 - [ ] **L'équipe PHOTO n'est dans aucune vue.** Elle existe déjà : l'ajouter aux filtres de « Créa/Photos/Vidéos » dès qu'une tâche photo arrive.
 - [ ] **L'équipe STRATEGIE non plus.** Nouvelle vue, ou rattachement à une vue existante ?
-- [ ] **Responsable mission local plafonné à une personne.** Une tâche portée à deux n'en fait remonter qu'un. Autoriser plusieurs personnes, ou filtrer « Mes tâches » sur le miroir.
+- [ ] **La colonne qui pilote « Mes tâches » n'accepte qu'une personne.** Une tâche portée à deux n'en fait remonter qu'une. Autoriser plusieurs personnes, ou faire filtrer la vue sur la colonne qui vient de Projets.
 
 ---
 
@@ -113,6 +116,8 @@ Elle reste dans « Général », nulle part ailleurs. Cause : l'élément parent
 **Ma tâche n'est pas sur Tasks BBS.** Le sous-élément n'a pas de *Responsable mission*.
 
 **Une tâche n'est dans aucune vue de pôle.** Il lui manque *Team Local*. Renseigne-la, puis corrige *Equipes* sur l'élément pour les suivantes.
+
+**J'ai réassigné la tâche, l'ancien responsable la voit toujours.** Le responsable n'est copié qu'à la création. Corrige-le aussi sur Tasks BBS.
 
 **Je modifie sur Tasks BBS, rien ne bouge dans Projets.** La saisie de référence est sur le sous-élément dans Projets.
 
