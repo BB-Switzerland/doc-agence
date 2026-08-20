@@ -184,9 +184,14 @@ C'est lui qui crée les items de Tasks BBS. L'API ne l'expose pas (`board_automa
 
 | Étape | Configuration |
 |---|---|
-| Déclencheur | `When subitem column changes` → colonne *Responsable mission* |
-| Condition | `Si la colonne est vide` → colonne *Responsable mission*, branche « Oui » |
-| Action | `Create item` → board Tasks BBS, groupe du haut |
+| 1 · Déclencheur | `When subitem column changes` → colonne *Responsable mission* |
+| 2 · Condition | Board Projets, élément = `ID du sous-élément` (Étape 1), colonne *Responsable mission*, opérateur **`is not empty`** |
+| 3 · Action | `Create item` → board Tasks BBS, groupe du haut |
+| 4 · Action | `Connect boards` → source Projets `ID du sous-élément` (Étape 1), destination Tasks BBS `ID de l'élément` (Étape 3), via `board_relation_mm668x6d` |
+
+:::note Le libellé du bloc 2 est trompeur
+Il s'affiche « Si la colonne est vide » — c'est le nom générique de la recette. L'opérateur réellement configuré est `is not empty` : la branche « Oui » se déclenche quand le responsable **est** renseigné. La branche « Non » n'a aucune action.
+:::
 
 Mapping de l'action `Create item` :
 
@@ -195,15 +200,16 @@ Mapping de l'action `Create item` :
 | Nom | `Subitem » Entreprise` + `Subitem » Name` |
 | `multiple_person_mm66hjda` (Responsable mission) | `Subitem » Responsable mission` |
 | `multiple_person_mm6bwtw6` (Team Local) | `Item » Equipes` — la colonne de l'**élément parent** |
-| `board_relation_mm668x6d` (link to Subitems of Projets) | non renseignée |
+| `board_relation_mm668x6d` (link to Subitems of Projets) | non renseignée ici — établie à l'étape 4 |
 | `text_mm66kxbn` (Entreprise Local) | non renseignée — laissée aux recettes IA ci-dessus |
 
-:::warning Deux conséquences
-1. `board_relation_mm668x6d` restant vide, les colonnes miroir (`lookup_mm66t63c`, `lookup_mm66naj1`, `lookup_mm6be7x8`) n'affichent rien.
-2. Les valeurs sont **copiées à la création**, pas synchronisées. Une réassignation ultérieure dans Projets ne remonte pas.
-:::
+:::warning Locale figée contre miroir vivant
+L'étape 4 établissant la relation, les colonnes miroir (`lookup_mm66t63c`, `lookup_mm66naj1`, `lookup_mm6be7x8`) résolvent correctement et suivent Projets en direct.
 
-Le workflow comporte une 4ᵉ étape non relevée ici.
+Les colonnes **locales**, elles, sont copiées une fois à la création et ne se resynchronisent jamais. `multiple_person_mm66hjda` est en outre plafonnée à une personne (`max_people_allowed: 1`) alors que le miroir en accepte plusieurs — les deux divergent dès qu'un sous-élément a deux responsables.
+
+Vérifié sur l'item `3159335323` : miroir = *Sylvain Varnet, Nicole Arhanchet Alonso*, local = *Sylvain Varnet*.
+:::
 
 **IDs des équipes**
 

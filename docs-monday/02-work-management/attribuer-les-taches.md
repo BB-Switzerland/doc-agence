@@ -78,9 +78,12 @@ Tu ne crées jamais d'item ici à la main. C'est le workflow **« Création él�
 
 | Étape | |
 |---|---|
-| **Déclencheur** | La colonne *Responsable mission* d'un sous-élément change |
-| **Condition** | Un test sur *Responsable mission* — branche « Oui » |
-| **Action** | Création d'un item sur Tasks BBS, dans le groupe du haut |
+| 1. **Déclencheur** | La colonne *Responsable mission* d'un sous-élément change |
+| 2. **Condition** | Cette colonne **n'est pas vide** (`is not empty`) |
+| 3. **Action** | Création d'un item sur Tasks BBS, dans le groupe du haut |
+| 4. **Action** | *Connect boards* : relie l'item créé au sous-élément d'origine |
+
+Autrement dit : **la tâche n'arrive sur Tasks BBS qu'au moment où tu assignes un responsable** sur le sous-élément. Tant que la case est vide, rien ne se crée.
 
 Ce qu'il recopie :
 
@@ -90,10 +93,17 @@ Ce qu'il recopie :
 | **Responsable mission** | *Responsable mission* du sous-élément |
 | **Team Local** | **Equipes de l'élément parent** |
 
-:::note C'est une copie, pas un miroir
-Les valeurs sont figées au moment de la création. Réassigner la tâche dans Projets ensuite ne met **pas** à jour Tasks BBS.
+:::warning Deux colonnes « Responsable mission », et elles peuvent diverger
+Tasks BBS en porte **deux** :
 
-Le board porte bien aussi des colonnes miroir (*Responsable mission* et *Prise de la Mission*, en lecture seule), mais elles dépendent de la colonne de liaison *link to Subitems of Projets* que le workflow ne renseigne pas : elles restent vides.
+- la **locale** (`multiple_person_mm66hjda`), recopiée à la création et **limitée à une personne**. C'est elle qui regroupe les vues et qui alimente « Mes tâches » ;
+- le **miroir** (`lookup_mm66t63c`), branché en direct sur le sous-élément, qui suit toutes les modifications et accepte plusieurs personnes.
+
+Grâce à l'étape 4, le lien vers Projets est bien établi : *Prise de la Mission* et le time tracking remontent en direct.
+
+Mais la colonne locale, elle, est figée. Exemple réel : la tâche « KATANA DIGITAL - Maquettes site web » affiche *Sylvain Varnet et Nicole Arhanchet Alonso* dans le miroir, et **Sylvain Varnet seul** en local. Nicole ne verra donc jamais cette tâche dans sa vue « Mes tâches ».
+
+**Si tu ajoutes ou changes un responsable après coup, corrige aussi la colonne locale sur Tasks BBS.**
 :::
 
 ### Les vues
@@ -116,8 +126,7 @@ Relevés sur la configuration actuelle, à traiter :
 - [ ] **« Mes tâches » ne masque pas les tâches terminées.** Le filtre ne porte que sur le responsable. Ajouter une règle **Prise de la Mission ≠ Terminée** pour ne pas polluer la vue.
 - [ ] **L'équipe PHOTO n'est dans aucune vue.** Elle existe (`13248237`) mais ne figure dans aucun filtre. À ajouter aux groupes de filtre de « Créa/Photos/Vidéos » dès qu'une tâche photo arrive.
 - [ ] **L'équipe STRATEGIE non plus** (`13248236`). À trancher : nouvelle vue, ou rattachement à une vue existante.
-- [ ] **Vérifier la condition du workflow de création.** Elle teste « si la colonne *Responsable mission* est vide », et c'est la branche **Oui** qui crée la tâche. Lu tel quel, l'item serait créé quand le responsable est vide — donc sans responsable, et invisible dans « Mes tâches ». Soit la condition porte sur une autre colonne, soit elle est inversée.
-- [ ] **La colonne de liaison reste vide.** *link to Subitems of Projets* n'est pas renseignée à la création : les colonnes miroir de Tasks BBS restent vides et le lien vers le sous-élément d'origine est perdu.
+- [ ] **Responsable mission local plafonné à une personne.** Une tâche portée à deux n'en fait remonter qu'un dans « Mes tâches ». Soit on autorise plusieurs personnes sur la colonne locale, soit on filtre « Mes tâches » sur le miroir plutôt que sur elle.
 
 ---
 
@@ -127,6 +136,8 @@ Relevés sur la configuration actuelle, à traiter :
 
 **J'ai rempli le responsable et la tâche n'est pas dans le Workload.** Il manque la **Timeline**. C'est elle qui alimente le Workload, pas la Deadline.
 
-**Je modifie sur Tasks BBS, rien ne bouge dans Projets.** Et l'inverse est vrai aussi : les valeurs sont copiées une fois, à la création. La saisie de référence se fait sur le sous-élément dans **Projets**.
+**Je modifie sur Tasks BBS, rien ne bouge dans Projets.** Normal, la saisie de référence se fait sur le sous-élément dans **Projets**. Les colonnes miroir de Tasks BBS suivent automatiquement ; la colonne locale *Responsable mission*, non — elle reste figée à la création.
+
+**Ma tâche n'est pas sur Tasks BBS.** Le sous-élément n'a pas de *Responsable mission* : c'est ce qui déclenche la création.
 
 **Une tâche n'apparaît dans aucune vue de pôle.** Il lui manque **Team Local**, parce que l'élément parent n'avait pas d'**Equipes** au moment de la création. Renseigne Team Local sur Tasks BBS, puis corrige Equipes sur l'élément pour les tâches suivantes.
