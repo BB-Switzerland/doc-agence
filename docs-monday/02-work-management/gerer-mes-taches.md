@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Gérer mes tâches
@@ -60,7 +60,8 @@ Trois colonnes en plus, à remplir sur les livrables :
 | Colonne | Valeurs |
 |---|---|
 | **Phases créa** | Pré-production · Production · Post-Prod · Validation |
-| **Statuts créa** | À faire · En Brief · En Tournage · En Montage · En Validation · Terminé |
+| **Créatif** | la personne qui réalise le livrable |
+| **Statuts créa** | Pas commencé · En Brief · En Cours · En Tournage · En Montage · En Validation · Modifications · Terminé |
 | **Type de Livrable** | Photo · Vidéo · Motion Design · Graphisme 2D |
 
 :::note Statuts Digital : pas encore figés
@@ -70,6 +71,8 @@ Les liens Figma et ressources externes se mettent directement dans l'élément.
 
 ## Les autres vues
 
+Sur le board **Projets** :
+
 | Vue | Pour quoi |
 |---|---|
 | **Workload** | La charge de travail par personne |
@@ -77,13 +80,22 @@ Les liens Figma et ressources externes se mettent directement dans l'élément.
 | **Gantt** | Le planning du projet |
 | **Vue principale** | Tout le board |
 
+Sur le board **Tasks BBS**, pour la vision transverse tous clients confondus :
+
+| Vue | Pour quoi |
+|---|---|
+| **Général** | Toutes les tâches de l'agence |
+| **Créa/Photos/Vidéos** | Les tâches du pôle création |
+| **Digital/Web** | Les tâches du pôle digital |
+| **Mes tâches** | Les tiennes, tous projets confondus |
+
 ## Questions fréquentes
 
 **Ma tâche n'apparaît pas dans le Workload.** Il lui manque forcément un de ces 3 champs : **Responsable mission**, **Timeline**, **Heures prévues**.
 
 **Je ne vois pas une tâche dans ma vue.** C'est la colonne **« Équipes »** qui pilote les filtres. Tu ne la remplis pas : elle vient du catalogue Services - BB® et Sidekick l'injecte à l'onboarding. Un service peut appartenir à plusieurs équipes (un shooting mobilise Créa + Photo) et apparaître dans plusieurs vues, c'est voulu.
 
-**Qui m'assigne ?** Personne automatiquement. Sidekick assigne à l'**équipe**, puis le responsable de pôle répartit nominativement.
+**Qui m'assigne ?** Personne automatiquement. Sidekick assigne à l'**équipe**, puis le responsable de pôle répartit nominativement — voir **[Attribuer les tâches](./attribuer-les-taches.md)**.
 
 **Et les dépendances ?** Manuelles. Plus de 125 combinaisons de services possibles, aucune règle automatique ne tient.
 

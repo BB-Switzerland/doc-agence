@@ -4,7 +4,9 @@ sidebar_position: 1
 
 # Comment les projets sont organisés
 
-**Tout se passe dans un seul board :** [Projets](https://agence-bb-ensemble.monday.com/boards/5097430798) (workspace Tryve). Tous les clients, tous les projets. Chacun retrouve ses tâches via des **vues filtrées**.
+**Le travail vit dans un seul board :** [Projets](https://agence-bb-ensemble.monday.com/boards/5097430798) (workspace BBS® - Work Management). Tous les clients, tous les projets.
+
+Un second board, [Tasks BBS](https://agence-bb-ensemble.monday.com/boards/5102159651), agrège toutes les tâches pour le **pilotage** : c'est là qu'on voit qui fait quoi, par pôle et par personne. Il ne contient aucune donnée propre, tout y est miroir de Projets.
 
 ## La seule règle à retenir
 
@@ -26,10 +28,11 @@ Concrètement :
 
 ![Un groupe déplié, avec un item lui-même déplié montrant ses sous-items](./img/projets-structure.png)
 
-## Les 2 guides
+## Les 3 guides
 
 1. **[Onboarder un projet](./onboarder-un-projet.md)** : transformer un devis signé en projet.
-2. **[Gérer mes tâches](./gerer-mes-taches.md)** : ton quotidien, statuts, heures, rentabilité.
+2. **[Attribuer les tâches](./attribuer-les-taches.md)** : qui fait quoi, quand — et les colonnes sans lesquelles rien ne remonte.
+3. **[Gérer mes tâches](./gerer-mes-taches.md)** : ton quotidien, statuts, heures, rentabilité.
 
 <details>
 <summary>Pourquoi un seul board et pas un board par client ?</summary>

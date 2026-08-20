@@ -22,8 +22,9 @@ Et si tu modifies une colonne dans monday : mets à jour cette page **et** [le p
 | Opportunités | `5093138639` | CRM - BB® | `5093138646` (vide) |
 | **Services - BB®** | `5095856027` | CRM - BB® | `5097425516` |
 | Activités CRM | `5093138642` | CRM - BB® | aucun |
-| **Projets** (WM) | `5097430798` | Tryve | `5097430830` |
-| Project Plan | `5095065143` | Tryve | `5095065148` (vide) |
+| **Projets** (WM) | `5097430798` | BBS® - Work Management | `5097430830` |
+| **Tasks BBS** (WM) | `5102159651` | BBS® - Work Management | `5102474491` |
+| Project Plan | `5095065143` | BBS® - Work Management | `5095065148` (vide) |
 
 ---
 
@@ -126,24 +127,96 @@ Ce board est la **source de vérité** des prix, des heures et des sous-tâches 
 | Phases créa | `color_mm44djn3` | Pré-production · Production · Post-Prod · Validation |
 | Prise de la Mission | `status` | Non récupérée · En cours de production · Terminée · Bloqué |
 | Time tracking | `duration_mm40b29d` | durée |
-| Responsable mission | à compléter | personne |
-| Timeline | à compléter | plage de dates, alimente le Workload |
-| Deadline | à compléter | date |
-
-:::note IDs manquants
-Les IDs de **Responsable mission**, **Timeline** et **Deadline** ne sont pas encore relevés. À compléter avant de les utiliser dans le prompt Sidekick ou une automatisation.
-:::
+| Responsable mission | `person` | personne |
+| Timeline | `timerange_mm447wb0` | plage de dates, alimente le Workload |
+| Deadline | `date_mm44rnm8` | date |
+| Entreprise | `text_mm668kb0` | texte, nom du client |
+| Créatif | `multiple_person_mm44zf7v` | personne |
+| Heures restantes | `formula_mm448zed` | formule |
+| Rentabilité | `formula_mm44gysk` | formule |
+| Tasks BBS | `board_relation_mm664xks` | lien vers `5102159651` |
 
 ### Colonnes métier Créa
 
 | Colonne | ID | Valeurs |
 |---|---|---|
-| Statuts créa | `color_mm45ej0z` | À faire · En Brief · En Tournage · En Montage · En Validation · Terminé |
+| Statuts créa | `color_mm45ej0z` | Pas commencé · En Brief · En Cours · En Tournage · En Montage · En Validation · Modifications · Terminé |
 | Type de Livrable | `dropdown_mm45khda` | Photo · Vidéo · Motion Design · Graphisme 2D |
 
 :::note
 Les statuts métier **Digital** ne sont pas encore figés, à définir avec Emmanuel.
 :::
+
+---
+
+## Tasks BBS · `5102159651`
+
+Board d'**agrégation**. La saisie se fait dans Projets ; l'essentiel des colonnes ici sont des miroirs, en lecture seule.
+
+| Colonne | ID | Type |
+|---|---|---|
+| link to Subitems of Projets | `board_relation_mm668x6d` | lien vers `5097430830` |
+| Responsable mission (miroir) | `lookup_mm66t63c` | miroir de `person` |
+| Prise de la Mission (miroir) | `lookup_mm66naj1` | miroir de `status` |
+| Miroir (time tracking) | `lookup_mm6be7x8` | miroir de `duration_mm40b29d` |
+| **Responsable mission** | `multiple_person_mm66hjda` | personne, locale, max 1 |
+| **Team Local** | `multiple_person_mm6bwtw6` | personne, locale, max 1 |
+| **Entreprise Local** | `text_mm66kxbn` | texte, rempli par automatisation |
+
+**Vues et filtres**
+
+| Vue | ID | Filtre |
+|---|---|---|
+| Général | `55914130` | aucun |
+| Créa/Photos/Vidéos | `55910475` | `multiple_person_mm6bwtw6` ∈ CREA · BRANDING · VIDEO |
+| Digital/Web | `55914314` | `multiple_person_mm6bwtw6` ∈ DIGITAL · WEB · RS |
+| Mes tâches | `55948518` | `multiple_person_mm66hjda` = utilisateur courant |
+
+Les quatre vues sont regroupées par `multiple_person_mm66hjda`.
+
+**Automatisations actives**
+
+Deux recettes IA remplissent `text_mm66kxbn` en extrayant le nom de l'entreprise **depuis le nom de l'item** : l'une à la création de l'item, l'autre à chaque changement de nom. C'est la raison pour laquelle le nom du client doit figurer dans le nom de la tâche.
+
+**Workflow « Création élément Créa »** · board hôte `5102160416`
+
+C'est lui qui crée les items de Tasks BBS. L'API ne l'expose pas (`board_automations` renvoie vide, pour ce board comme au niveau du compte) : toute modification passe par l'éditeur monday.
+
+| Étape | Configuration |
+|---|---|
+| Déclencheur | `When subitem column changes` → colonne *Responsable mission* |
+| Condition | `Si la colonne est vide` → colonne *Responsable mission*, branche « Oui » |
+| Action | `Create item` → board Tasks BBS, groupe du haut |
+
+Mapping de l'action `Create item` :
+
+| Colonne cible | Valeur |
+|---|---|
+| Nom | `Subitem » Entreprise` + `Subitem » Name` |
+| `multiple_person_mm66hjda` (Responsable mission) | `Subitem » Responsable mission` |
+| `multiple_person_mm6bwtw6` (Team Local) | `Item » Equipes` — la colonne de l'**élément parent** |
+| `board_relation_mm668x6d` (link to Subitems of Projets) | non renseignée |
+| `text_mm66kxbn` (Entreprise Local) | non renseignée — laissée aux recettes IA ci-dessus |
+
+:::warning Deux conséquences
+1. `board_relation_mm668x6d` restant vide, les colonnes miroir (`lookup_mm66t63c`, `lookup_mm66naj1`, `lookup_mm6be7x8`) n'affichent rien.
+2. Les valeurs sont **copiées à la création**, pas synchronisées. Une réassignation ultérieure dans Projets ne remonte pas.
+:::
+
+Le workflow comporte une 4ᵉ étape non relevée ici.
+
+**IDs des équipes**
+
+| Équipe | ID | Vue |
+|---|---|---|
+| CREA | `13248232` | Créa/Photos/Vidéos |
+| BRANDING | `13248241` | Créa/Photos/Vidéos |
+| VIDEO | `13248238` | Créa/Photos/Vidéos |
+| DIGITAL | `13248234` | Digital/Web |
+| WEB | `13248233` | Digital/Web |
+| RS | `13248235` | Digital/Web |
+| PHOTO | `13248237` | ⚠️ aucune |
+| STRATEGIE | `13248236` | ⚠️ aucune |
 
 ---
 
