@@ -55,7 +55,7 @@ Un board de **pilotage** : toutes les tâches de l'agence, tous clients confondu
 
 ### Comment la tâche y arrive
 
-Le workflow **« Création élément Créa »** s'en charge :
+Un workflow s'en charge :
 
 | | |
 |---|---|
