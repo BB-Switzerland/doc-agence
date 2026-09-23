@@ -81,8 +81,8 @@ Et si tu modifies une colonne dans monday : mets à jour cette page **et** [le p
 
 | Colonne | ID | Valeur écrite |
 |---|---|---|
-| Statut d'onboarding | `color_mm7ferst` | `Onboardé` |
-| Lien vers le groupe Projets | `link_mm7f6162` | URL du groupe + son nom |
+| Onboardé | `color_mm7ferst` | `Onboardé` — les autres valeurs sont `Non onboardé` et `Pas de projet` |
+| Projet BBS | `link_mm7f6162` | URL du groupe créé dans Projets + son nom |
 | Date d'onboarding | `date_mm7fd8dh` | date du jour |
 
 ---
