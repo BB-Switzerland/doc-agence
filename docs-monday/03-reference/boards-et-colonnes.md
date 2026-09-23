@@ -77,6 +77,14 @@ Et si tu modifies une colonne dans monday : mets à jour cette page **et** [le p
 | Personne de contact | `deal_contact` |
 | E-mail destinataire (miroir) | `lookup_mm339a4c` |
 
+**Colonnes d'onboarding** — écrites par Sidekick à l'étape 8 du [prompt](./prompt-sidekick.md), une fois le projet monté.
+
+| Colonne | ID | Valeur écrite |
+|---|---|---|
+| Statut d'onboarding | `color_mm7ferst` | `Onboardé` |
+| Lien vers le groupe Projets | `link_mm7f6162` | URL du groupe + son nom |
+| Date d'onboarding | `date_mm7fd8dh` | date du jour |
+
 ---
 
 ## Services - BB® · `5095856027` (lecture seule)

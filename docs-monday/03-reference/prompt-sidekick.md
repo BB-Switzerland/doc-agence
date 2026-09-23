@@ -25,9 +25,11 @@ En te basant sur le PDF joint et les boards monday.com existants, effectue l'imp
    ⛔ Ne jamais supposer l'absence de sous-éléments sans exécuter cette requête. Par subitem : nom exact, Heures par tâche (numeric_mm40b3mc), Phases créa (color_mm453hww).
 
 ÉTAPE 3. Dans « Opportunités » (board 5093138639), retrouve l'opportunité du client/devis et récupère : Introduction (long_text_mm34mmtz), Mission (text_mm3qk3mr), e-mail du contact lié (relation deal_contact → Contacts → contact_email).
+   Mémorise l'ID de cette opportunité : il sera requis à l'ÉTAPE 8.
 
 ÉTAPE 4. Dans « Projets » (board 5097430798), crée un nouveau groupe nommé :
    [Nom de l'entreprise] - Offre [numéro] | Pour [durée] de collaboration
+   Mémorise le group_id retourné : il sera requis à l'ÉTAPE 8.
 
 ÉTAPE 5. Crée chaque produit comme un item dans le groupe (même ordre que le PDF) :
    numeric_mm3xgetk = Prix CHF · numeric_mm3x8ty = Calcul Heures · color_mm3s37zx = Category ·
@@ -40,16 +42,28 @@ En te basant sur le PDF joint et les boards monday.com existants, effectue l'imp
 
 ÉTAPE 7. Crée un monday Doc attaché à chaque item (location_type: item), nommé « Introduction - [nom du produit] », contenant l'Introduction de l'étape 3 formatée en « ## Introduction ».
 
-RÉSUMÉ FINAL. Fournis un tableau : nom du groupe créé, items créés (Prix CHF, Heures, Catégorie), nombre de subitems + leurs noms par item, confirmation des docs créés.
+ÉTAPE 8. Marque l'opportunité comme onboardée. Sur l'opportunité identifiée à l'ÉTAPE 3 (board 5093138639), écris via change_multiple_column_values :
+
+   color_mm7ferst  = {"label": "Onboardé"}
+   link_mm7f6162   = {"url": "https://agence-bb-ensemble.monday.com/boards/5097430798/groups/[GROUP_ID]",
+                      "text": "[nom du groupe créé à l'ÉTAPE 4]"}
+   date_mm7fd8dh   = {"date": "[date du jour au format YYYY-MM-DD]"}
+
+   où [GROUP_ID] est l'id retourné par create_group à l'ÉTAPE 4.
+
+   ⛔ Si aucune opportunité n'a pu être identifiée à l'ÉTAPE 3, n'écris rien et signale-le explicitement dans le résumé final.
+
+RÉSUMÉ FINAL. Fournis un tableau : nom du groupe créé, items créés (Prix CHF, Heures, Catégorie), nombre de subitems + leurs noms par item, confirmation des docs créés, et opportunité mise à jour ([nom + lien]) ou « ⚠️ aucune opportunité trouvée ».
 ```
 
 ---
 
 :::danger Ne modifie pas le prompt à la légère
-Deux blocs sont **critiques** et ne doivent jamais être retirés :
+Trois blocs sont **critiques** et ne doivent jamais être retirés :
 
 - la **requête GraphQL** de l'étape 2 : sans elle, les sous-éléments sont silencieusement ignorés ;
-- le **⛔ lecture seule** sur Services - BB® aux étapes 2 et 6.
+- le **⛔ lecture seule** sur Services - BB® aux étapes 2 et 6 ;
+- le **⛔ de l'étape 8** : sans lui, Sidekick risque d'écrire « Onboardé » sur une opportunité qu'il n'a pas réellement identifiée.
 :::
 
 :::note Si les IDs de colonnes changent
