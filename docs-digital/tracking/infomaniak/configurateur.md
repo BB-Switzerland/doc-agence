@@ -1,20 +1,24 @@
 ---
 sidebar_position: 2
 title: Configurateur de script
-description: Génère ton script head Infomaniak en quelques clics
+description: Génère le script head, la balise pont et les exceptions CSP Infomaniak
 ---
 
 import InfomaniakTrackingConfigurator from '@site/src/components/InfomaniakTrackingConfigurator';
 
-# Configurateur de script head
+# Configurateur de script
 
-Cet outil génère le code à coller dans **Options Développeur** de la billetterie Infomaniak en fonction des trackers que tu actives et des ID que tu renseignes.
+Cet outil génère tout ce qu'il faut pour tracker une billetterie Infomaniak :
+
+1. le code à coller dans **Développeur** > **Code HTML placé dans le head** ;
+2. le script de la balise GTM **« Billetterie - Pont ike_* vers dataLayer »** ;
+3. la liste des **exceptions CSP** à ajouter pour Meta.
 
 :::tip Comment l'utiliser
-1. Coche les trackers à inclure (GTM, GA4, Meta Pixel, évènements Infomaniak)
-2. Renseigne les ID correspondants
-3. Sélectionne les évènements `ike_` à pousser vers GA4
-4. Clique sur **Copier** et colle le résultat dans Infomaniak
+1. Garde le mode **Via GTM (recommandé)**
+2. Renseigne l'ID du conteneur GTM
+3. Coche **Meta Pixel** si le client a un pixel, pour afficher les exceptions CSP
+4. Copie chaque bloc à l'endroit indiqué
 :::
 
 <InfomaniakTrackingConfigurator />
@@ -23,9 +27,10 @@ Cet outil génère le code à coller dans **Options Développeur** de la billett
 
 ## Notes
 
-- Les évènements Infomaniak (`ike_`) reposent sur `gtag()` et nécessitent **un ID GA4** (soit via la case GA4, soit en saisissant uniquement l'ID dans le bloc GA4 si tu ne veux pas charger le snippet complet).
-- Si tu gères GA4 et Meta via **GTM**, désactive les snippets directs et configure les balises côté GTM — c'est plus simple à maintenir et à brancher au consentement.
-- Pense à **publier** le conteneur GTM après tests (Aperçu GTM, DebugView GA4, Meta Pixel Helper).
+- En mode **GTM**, le head ne contient **que** GTM. GA4, Meta et le consentement se configurent dans GTM : voir la [page principale](./#5-éléments-gtm-à-créer).
+- Le mode **Scripts directs** existe pour les cas sans GTM. Il ne gère **pas le consentement** : à éviter pour les clients soumis au RGPD ou à la nLPD.
+- Ne mélange jamais les deux modes : un `gtag` ou un `fbq` dans le head en plus de GTM crée des doublons.
+- Après les tests (Aperçu GTM et Évènements de test Meta), pense à **publier** le conteneur GTM.
 
 ## Où trouver les ID
 
