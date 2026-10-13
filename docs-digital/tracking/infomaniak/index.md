@@ -272,27 +272,27 @@ Sur la billetterie (pixel chargé par GTM, CSP Infomaniak, fenêtre d'aperçu), 
 
 ---
 
-<a id="id-fb-pixel"></a>
+### Pour retrouver l'id de l'ensemble de données de Meta {#id-fb-pixel}
 
-:::tip Pour retrouver l'id de l'ensemble de données de Meta
+:::tip
 Allez dans le **Gestionnaire d'événements** de votre compte Meta Business
 
 ![meta-events-manager](./img/FB-ID.png)
 
 :::
 
-<a id="id-gtm"></a>
+### Pour retrouver l'id du conteneur GTM {#id-gtm}
 
-:::tip Pour retrouver l'id du conteneur GTM
+:::tip
 Allez dans votre compte Google Tag Manager et copiez l'ID du conteneur
 
 ![gtm-id](./img/GTM-ID.png)
 
 :::
 
-<a id="id-ga4"></a>
+### Pour retrouver l'id de mesure GA4 {#id-ga4}
 
-:::tip Pour retrouver l'id de mesure GA4
+:::tip
 1. **Administration**
 2. **Flux de données**
 3. Cliquez sur votre flux web
