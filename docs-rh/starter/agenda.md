@@ -24,11 +24,11 @@ La première fois, colle l'adresse complète dans le champ des invités. Ensuite
 | **Salle de conférence** | `c_a6da7e2a19696fb08a6cb0b63d2743929fed797e9edeb36f585cf5297ada9370@group.calendar.google.com` |
 | **Bureau ALC** | `c_40c3542873b292c31e746abb52de3bf6125c73bc5fba708f67a7a2f0d4db2ea5@group.calendar.google.com` |
 
-![Coller l'adresse de l'Agenda Global dans le champ des invités](./img/agenda-inviter.png)
+<img src={require('./img/agenda-inviter.png').default} alt="Coller l'adresse de l'Agenda Global dans le champ des invités" width="700" />
 
 Une fois enregistré, l'agenda apparaît dans la liste des invités, au même titre qu'un collègue.
 
-![L'événement avec Agenda Global et Salle de conférence dans les invités](./img/agenda-evenement.png)
+<img src={require('./img/agenda-evenement.png').default} alt="L'événement avec Agenda Global et Salle de conférence dans les invités" width="420" />
 
 ## Nommer les RDV client
 
