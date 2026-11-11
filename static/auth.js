@@ -33,6 +33,17 @@ function isLoginRequiredPath(pathname) {
   return loginRequiredPaths.some((p) => pathname.startsWith(p));
 }
 
+// Accès ponctuels à une page réservée, sans ouvrir toute la section.
+// Correspondance exacte (avec ou sans slash final), pas de préfixe.
+const extraAccess = {
+  "dylan@agence-bb.ch": ["/digital/site-web/bb-life/add-bb-life"],
+};
+function hasExtraAccess(email, pathname) {
+  return (extraAccess[email] || []).some(
+    (p) => pathname === p || pathname === p + "/"
+  );
+}
+
 // ------------------------------
 // Restriction de domaine (optionnelle)
 // ------------------------------
@@ -210,6 +221,10 @@ function isAllowedDomain(user) {
     // n'importe quel compte @agence-bb.ch passe. La condition sur isPrivatePath
     // garantit qu'ajouter "/digital" ici n'ouvrirait jamais /digital/tracking.
     if (isLoginRequiredPath(pathname) && !isPrivatePath(pathname)) {
+      allowed = true;
+    }
+
+    if (hasExtraAccess(user.email, pathname)) {
       allowed = true;
     }
 
